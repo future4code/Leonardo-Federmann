@@ -1,0 +1,47 @@
+h1{
+    color: red
+}
+
+.NomeDaLoja{
+    border: 5px white solid;
+    border-width: 5px;
+    border-color:white;
+    background-color: red;
+    color:white;
+    padding:2px 2px 2px 400px;
+    margin:10px 10px 10px 10px;
+    width: 50%;
+}
+
+.slogan {
+color:white;
+border: 2px;
+border-color: black;
+display:inline;
+margin: 3px;
+}
+
+.Hiperlinks{
+    margin:5px 5px 5px 20%;
+}
+
+.Centralizar{
+    margin: 10px 10px 10px 30%;
+}
+
+.LetrasBrancas{color:white}
+.LetrasPretas{color:black}
+
+.ImagemDeFundo{
+background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20201029/pngtree-high-quality-space-background-explosion-supernova-bright-star-nebula-distant-galaxy-image_444834.jpg);
+}
+.TabelaDeProdutos{
+    background-color:floralwhite;
+    border: black 5px solid;
+    padding:10px;
+}
+
+.ImagemCabecalho{
+    border: black 5px solid;
+    margin-left:15%;
+}
