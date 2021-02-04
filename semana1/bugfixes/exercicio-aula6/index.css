@@ -150,7 +150,10 @@ td button {
 #back-button:active{
     background-color: blue;
 }
-
+td>button{
+    font-family:arial;
+    font-size:20px
+}
 td>button:hover{
     background-color: greenyellow;
 }
