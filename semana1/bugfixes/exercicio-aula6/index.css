@@ -51,9 +51,9 @@ div img {
 }
 
 .container {
-    height: 300px;
+    height: 250px;
     text-align: center;
-    padding-top: 200px;
+    padding-top: 100px;
 }
 
 .icone {
@@ -70,10 +70,23 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
+    font-family: arial;
+    font-size: 20px;
 }
+
+#container-de-descricao h3{
+    font-size:35px;
+    font-family: 'arial black';
+    color: greenyellow;
+}
+
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    font-family: 'arial black';
+    font-size:30px;
+    color:firebrick
+   
 }
 
 #container-para-comprar {
