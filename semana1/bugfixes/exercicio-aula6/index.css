@@ -147,6 +147,17 @@ td button {
 #back-button:hover {
     background-color: #635a3d;
 }
+#back-button:active{
+    background-color: blue;
+}
+
+td>button:hover{
+    background-color: greenyellow;
+}
+td>button:active{
+    background-color: orange;
+    color:white;
+}
 
 td{
     font-family: 'arial';
