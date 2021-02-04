@@ -51,8 +51,9 @@ div img {
 }
 
 .container {
-    height: 500px;
+    height: 300px;
     text-align: center;
+    padding-top: 200px;
 }
 
 .icone {
