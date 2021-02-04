@@ -173,3 +173,6 @@ td{
 .TabelaBorda{
     border: black 2px solid;
 }
+a>button, td>button{
+    box-shadow: none;
+}
