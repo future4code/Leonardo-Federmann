@@ -1,0 +1,182 @@
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+}
+
+input {
+    height: 20px;
+    width: 500px;
+}
+
+button:focus {
+    color: white;
+}
+
+img {
+    width: 100px;
+}
+
+div>p:first-child {
+    display: inline;
+}
+
+div img {
+    background-color: white;
+}
+
+section>img{
+    width: 15px;
+}
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+.container {
+    height: 250px;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.icone {
+    height: 15px;
+}
+
+.icone:hover{
+    transform: scale(2) rotate(45deg);
+    
+}
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    font-family: arial;
+    font-size: 20px;
+}
+
+#container-de-descricao h3{
+    font-size:35px;
+    font-family: 'arial black';
+    color: greenyellow;
+}
+
+
+#container-de-descricao>ol {
+    padding: 15px 0px;
+    font-family: 'arial black';
+    font-size:30px;
+    color:firebrick
+   
+}
+
+#container-para-comprar {
+    background-color: #e7eb90;
+}
+
+#container-para-comprar>p {
+    color: #c44f00;
+    padding: 100px 0;
+    font-size: 60px;
+}
+
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+div:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    width: 60%;
+    text-align:center;
+    margin:auto;
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+}
+
+
+#back-button {
+    background-color: white;
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+    color: black;
+    padding:5px;
+   margin-left:20vw;
+}
+
+#back-button:hover {
+    background-color: #635a3d;
+}
+#back-button:active{
+    background-color: blue;
+}
+td>button{
+    font-family:arial;
+    font-size:20px
+}
+td>button:hover{
+    background-color: greenyellow;
+}
+td>button:active{
+    background-color: orange;
+    color:white;
+}
+
+td{
+    font-family: 'arial';
+    font-size: 20px;
+}
+
+.TabelaBorda{
+    border: black 2px solid;
+}
+a>button, td>button{
+    box-shadow: none;
+}
