@@ -1,0 +1,116 @@
+main{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows: 10vh 1fr 10vh;
+    height: 100vh;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;padding:0 10px;
+    background-color: #2a623d;
+    border-bottom: solid black 2px;
+}
+header h1{
+    color: white;
+    font-size: 50px;
+    font-family: 'kunstler script';
+}
+
+header p{
+    color:white;
+    font-family: arial;
+
+}
+
+header label{
+    color:white;
+    font-size: 15px;
+}
+
+.conteudo{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows:repeat(4,1fr);
+    background-image: url(https://img.elo7.com.br/product/original/1360BB4/painel-floresta-g-frete-gratis-fundo-festa-infantil.jpg);
+    column-gap: 15px;
+    row-gap: 15px;
+    padding:10px;
+}
+
+.video{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration:none;
+    color:black;
+    padding:5px;
+
+}
+
+a{
+background-color: #2a623d;
+border: black solid 2px;
+border-radius: 10px;
+}
+
+a:hover{
+    background-color: #0e1a40;
+}
+
+a p{
+    color:white;
+    font-family: arial;
+    font-size: 15px;
+}
+
+.FotoVideo{
+    width: 20vw;
+    border:solid black 2px;
+    border-radius: 10px;
+}
+
+.DetalheVideo{
+    background-image: url(https://img.elo7.com.br/product/original/1360BB4/painel-floresta-g-frete-gratis-fundo-festa-infantil.jpg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.QuadroVideo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #2a623d;
+border: black solid 2px;
+border-radius: 10px;
+padding:7px;
+}
+
+.QuadroVideo h1{
+    color: white;
+    font-family: arial;
+    font-size: 20px;
+}
+
+.ReproducaoVideo{
+    width:50vw;
+    border: black solid 2px;
+    border-radius: 10px;
+}
+
+footer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2a623d;
+    color:white;
+    border-top:black solid 2px;
+}
+
+footer p{
+    font-family: arial;
+}
