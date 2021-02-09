@@ -1,0 +1,263 @@
+*{
+    background-color: white;
+    font-family: arial;
+}
+
+header{
+    background-color:#189ad3;
+    height: 450px;
+    text-align:center;
+}
+
+.CabecalhoLoja{
+    background-image: url(https://user-images.githubusercontent.com/45580434/79641791-06e1c100-8170-11ea-8ecf-b6c889805d55.png);
+    height: 400px;
+}
+
+#TituloLoja{
+    font-family: 'arial narrow';
+    font-size:30px;
+    color:black;
+    text-align: center;
+}
+#DescricaoLoja{
+    font-family: arial;
+    font-size: 20px;
+    color:black;
+    text-align: justify;
+    display:block;
+    width: 1000px;
+    margin:auto;
+}
+.ListaLoja{
+    font-family: arial;
+    font-size: 20px;
+    color:black;
+    text-align: justify;
+    display:block;
+    width: 500px;
+    margin:auto;
+    padding: 20px;
+}
+
+.ImagemLoja{
+    border-radius: 10px;
+    border: black solid 3px;
+    display:block;
+  margin:auto;
+    }
+
+.Centralizar{
+    margin:auto;
+}
+
+#BotaoVoltar{
+    margin:100px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#MinhaFoto{
+    height: 300px;
+    border-radius: 10px;
+    border: black solid 3px;
+    display:inline-block;
+    text-align:center;
+    margin:auto;
+}
+header h1{
+    font-family: 'arial black';
+    font-size: 40px;
+    color:black;
+    margin-bottom: 1px;
+    background-color:#189ad3;
+    text-align: left;
+}
+.Subtitulo{
+    font-family: 'arial narrow';
+    font-size:30px;
+    color:black;
+    margin-top:1px;
+    background-color:#189ad3;
+    text-align: left;
+}
+h3{
+    font-family: 'arial narrow';
+    font-size:25px;
+    color:black;
+    margin:auto;
+    width: 800px;
+    text-align: center;
+    padding-top:50px;
+}
+#Apresentacao{
+    width: 600px;
+    height: 400px;
+    display: inline-block;
+    background-color:#189ad3;
+    margin-left: 10px;
+}
+
+#TextoApresentacao{
+    font-family: arial;
+    font-size:20px;
+    color:black;
+    width: 600px;
+    text-align: justify;
+    background-color:#189ad3;
+}
+#Instituicoes{
+    display:block;
+    text-align:justify;
+    margin:auto;
+    width:750px
+}
+.FotosInstituicoes{
+    display:inline-block;
+    height: 100px;
+    margin:40px;
+}
+.DobrarImagem{
+    transform: scale(2);
+}
+.ReduzirImagem80{
+    transform: scale(0.8);
+}
+.ReduzirImagem{
+    transform: scale(0.7);
+}
+.SecaoProjetos{
+    text-align:center;
+}
+.ProjetoLoja{
+    display:inline-block;
+    width: 225px;
+    height: 225px;
+    border-radius: 10px;
+    border: solid black 3px;
+    margin:40px;
+    text-decoration:none;
+        background-image: url(data:image/jpeg;base64,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);
+}
+
+.ProjetoLoja h4{
+    background:none;
+    text-align:center;
+    padding-top:35px;  
+    font-family: 'arial black';
+    font-size:30px;
+    color:black;
+}
+.ProjetoLoja h4:hover{
+    color:blue;
+   transform: scale(1.3);
+ }
+
+ .TabelaDeSkills{
+     text-align: center;
+ }
+ .skills{
+     display:inline-block;
+     background-color: #6497b1;
+     border: black 3px solid;
+     border-radius: 10px;
+     width: 500px;
+     margin:20px;
+ }
+
+ .skills h4{
+     font-family: 'arial black';
+     font-size: 30px;
+     color:black;
+     text-align: center;
+     background:none;
+ }
+
+
+ .SubSkills{
+     font-family: arial;
+     font-size: 20px;
+     color:black;
+     text-align: center;
+     background:none;
+ }
+
+ .SubSkills p, .SubSkills strong{
+     background:none;
+     padding:3px;
+ }
+
+ form{
+    margin:auto;
+    text-align: center;
+     background-color:#6497b1;
+     border:black solid 3px;
+     border-radius: 10px;
+     width: 500px;
+     font-family: arial;
+     font-size: 20px;
+     color:black;
+ }
+
+label{
+    background: none;
+}
+ .ItemFormulario{
+     margin:20px;
+     background:none;
+ }
+ .Botao{
+     border-radius: 10px;
+     border:black solid 3px;
+     background-color: cyan;
+     font-family: 'arial';
+     font-size: 20px;
+     color:black;
+     padding:10px;
+     margin-bottom: 5px;
+     text-decoration: none;
+ }
+
+ .Contato{
+    margin:auto;
+    text-align: center;
+     background-color:#6497b1;
+     border:black solid 3px;
+     border-radius: 10px;
+     width: 500px;
+     font-family: arial;
+     font-size: 20px;
+     color:black;
+ }
+ .ImagemContato{
+height: 30px;
+display:inline-block;
+background:none;
+ }
+ .TextoContato{
+     display: inline-block;
+     background:none;
+ }
+
+ .SemFundo{
+     background: none;
+ }
+
+ footer{
+    background-color:#189ad3;
+    height: 180px;
+    text-align:center;
+ }
+
+ .RedesSociais{
+     height: 70px;
+     display:inline-block;
+     margin:50px;
+     background: none;
+ }
+ a .RedesSociais{
+     background:none;
+ }
+ .teste{
+     
+ }

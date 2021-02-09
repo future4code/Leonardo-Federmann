@@ -1,0 +1,41 @@
+main{
+    display: grid;
+    grid-template-rows:40px 1fr;
+    grid-template-columns:1fr 2fr 1fr;
+}
+
+header{
+    grid-column:1/span 3;
+    display: flex;
+    justify-content:space-between;
+    padding:0 10px;
+}
+
+#logo{
+    height: 30px;
+}
+
+#Principal{
+    background-color:lightslategray;
+    grid-column:1/span 3;
+    height: 90vh;
+    display: flex;
+    justify-content: space-evenly;
+    
+
+}
+
+#secao1{
+background-color: lime;
+width: 25vw;
+}
+
+#secao2{
+    background: magenta;
+    width: 50vw;
+}
+
+#secao3{
+    background: midnightblue;
+    width: 25vw;
+}
