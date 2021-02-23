@@ -17,11 +17,11 @@ console.log('A primeira variável é do tipo', typeof nome, 'e a segunda, do tip
 //RESPOSTA DA LETRA D: o valor impresso foi undefined, próprio de variáveis cujo valor ainda não foi atribuído (caso das duas variáveis declaradas).
 nome = prompt('Qual é seu nome?')
 idade = prompt('Prazer! Agora me diz: quantos anos você tem?')
-console.log('Agora, a primeira variável é do tipo', typeof nome,'e a segunda, do tipo', typeof idade)
+console.log('Agora, a primeira variável é do tipo', typeof nome, 'e a segunda, do tipo', typeof idade)
 //RESPOSTA DA LETRA E: Agora, ambas as variáveis passaram a ser do tipo string, o que é completamente cabível para a variável nome.
 //Contudo, a variável idade deveria ser do tipo number. Assumo portanto que, ao permitir que o usuário insira um valor com o uso do prompt, 
 //tal valor será inevitavelmente um texto. Talvez haja outro comando utilizado para a inserção de números.
-console.log('Olá', nome,', você tem', idade, 'anos')
+console.log('Olá', nome, ', você tem', idade, 'anos')
 console.log('')
 
 //2-)
@@ -36,7 +36,7 @@ let cor = prompt('Por fim, nos conte a sua cor favorita. =)')
 // //Impressão dos valores na disposição solicitada
 console.log('Obrigado! As suas respostas foram:')
 console.log('1. Qual o seu endereço?')
-console.log('Resposta:',logr, nomeLogr, numero, complemento)
+console.log('Resposta:', logr, nomeLogr, numero, complemento)
 console.log('')
 console.log('2. Qual a sua cor favorita?')
 console.log('Resposta:', cor)
@@ -45,7 +45,7 @@ console.log('')
 
 //3-)
 
-let comidas = ['culinária árabe','culinária japonesa','açaí','batata rústica','culinária mexicana']
+let comidas = ['culinária árabe', 'culinária japonesa', 'açaí', 'batata rústica', 'culinária mexicana']
 console.log(comidas)
 console.log('Essas são minhas comidas favoritas:')
 console.log(comidas[0])
@@ -65,7 +65,7 @@ console.log(comidas[4])
 console.log('')
 //4-)
 
-let perguntas = ['Você está lendo um livro?','Você está fazendo um curso de programação?','Você mora no Himalaia?']
+let perguntas = ['Você está lendo um livro?', 'Você está fazendo um curso de programação?', 'Você mora no Himalaia?']
 let respostas = [true, true, false]
 console.log(perguntas[0], respostas[0])
 console.log(perguntas[1], respostas[1])
