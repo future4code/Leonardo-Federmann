@@ -12,12 +12,12 @@ let createPost = () => {
         image: document.getElementById("imagem-post").value,
         imageDescription: document.getElementById("descricao-imagem-post").value,
     }
+
     //ITEM 3: ao preencher o formulário, adicione o objeto a um array de objetos:
     posts.push(infoPost)
 
     //ITEM 4: criar uma seção no HTML responsável por mostrar os posts:
     //essa seção já veio no template fornecido com a id "container-de-posts".
-
     //ITEM 5: criar uma função que insira os posts no HTML:
     //Essa função (createPost) já foi declarada no início do código.
     //Seguem os comandos responsáveis por inserir os posts no HTML:
@@ -36,4 +36,5 @@ let createPost = () => {
     document.getElementById("conteudo-post").value = ''
     document.getElementById("imagem-post").value = ''
     document.getElementById("descricao-imagem-post").value = ''
+
 }
