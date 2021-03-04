@@ -117,8 +117,7 @@ function filtrarDespesas() {
     let valorMax = Number(document.getElementById('valorFiltroMax').value)
 
     //DESAFIO 1: validação que não permita valores inválidos nos campos de filtro:
-    // || validarValor(valorMin)===false || validarValor(valorMax)===false
-    if (tipoFiltro === '') {
+    if (tipoFiltro === '' || validarValorFiltro(document.getElementById('valorFiltroMin'))===false || validarValorFiltro(document.getElementById('valorFiltroMax'))===false) {
         alert('Preencha os campos com números válidos e selecione um tipo de filtro.')
     } else if (valorMax < 0 || valorMin < 0) {
         alert('Preencha os campos com números positivos válidos.')
@@ -145,6 +144,13 @@ function filtrarDespesas() {
 
 function validarValor(valor) {
     if (valor.value.length > 0 && parseInt(valor.value) > 0) {
+        return true
+    }
+    return false
+}
+
+function validarValorFiltro(valor) {
+    if (valor.value.length >= 0 && parseInt(valor.value) >= 0) {
         return true
     }
     return false
