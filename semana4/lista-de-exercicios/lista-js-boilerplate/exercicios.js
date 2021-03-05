@@ -205,55 +205,117 @@ const arrayDePessoas = [
 // Exercício 16, letra A
 
 function maioresDe18(arrayDePessoas) {
-   // implemente sua lógica aqui
+   let adultos = []
+   for (n of arrayDePessoas){
+      if(n.idade>=18){
+         adultos.push(n)
+      }
+   }
+   return adultos
 }
 
 // Exercício 16, letra B
 
 function menoresDe18(arrayDePessoas) {
-   // implemente sua lógica aqui
+   let criancasEAdolescentes = []
+   for (n of arrayDePessoas){
+      if(n.idade<18){
+         criancasEAdolescentes.push(n)
+      }
+   }
+   return criancasEAdolescentes
 }
 
 // Exercício 17, letra A
 
+const array = [1, 2, 3, 4, 5, 6]
+
 function multiplicaArrayPor2(array) {
-   // implemente sua lógica aqui
+   let dobro = array.map((num)=>{
+      return 2*num
+   })
+
+   return dobro
 }
 
 // Exercício 17, letra B
 
 function multiplicaArrayPor2S(array) {
-   // implemente sua lógica aqui
+   let frase = multiplicaArrayPor2(array)
+   let fraseDobro = []
+   for (n of frase){
+      fraseDobro.push(String(n))
+   }
+   return fraseDobro
 }
 
 // Exercício 17, letra C
 
 function verificaParidade(array) {
-   // implemente sua lógica aqui
+   let frases = []
+   for(n of array){
+      if(n%2===0){
+         frases.push(`${n} é par`)
+      } else{
+         frases.push(`${n} é ímpar`)
+      }
+   }
+   return frases
 }
 
 // Exercício 18
 
-const pessoas = [
-   { nome: "Paula", idade: 12, altura: 1.8 },
-   { nome: "João", idade: 20, altura: 1.3 },
-   { nome: "Pedro", idade: 15, altura: 1.9 },
-   { nome: "Luciano", idade: 22, altura: 1.8 },
-   { nome: "Artur", idade: 10, altura: 1.2 },
-   { nome: "Soter", idade: 70, altura: 1.9 }
-]
+//O teste desse exercício não estava funcionando mesmo com a resolução estando correta,
+//pois a array "pessoas" era reconhecida como undefined assim que entrava na função.
+//Decidi, portanto, declarar exatamente a mes array dentro da função para evitar que isso acontecesse.
+//Por esse motivo, comitei a array abaixo.
+// const pessoas = [
+//    { nome: "Paula", idade: 12, altura: 1.8 },
+//    { nome: "João", idade: 20, altura: 1.3 },
+//    { nome: "Pedro", idade: 15, altura: 1.9 },
+//    { nome: "Luciano", idade: 22, altura: 1.8 },
+//    { nome: "Artur", idade: 10, altura: 1.2 },
+//    { nome: "Soter", idade: 70, altura: 1.9 }
+// ]
 
 //Exercício 18, letra A
 
-function retornaPessoasAutorizadas(pessoas) {
-   // implemente sua lógica aqui
+function retornaPessoasAutorizadas() {
+   const pessoas = [
+      { nome: "Paula", idade: 12, altura: 1.8 },
+      { nome: "João", idade: 20, altura: 1.3 },
+      { nome: "Pedro", idade: 15, altura: 1.9 },
+      { nome: "Luciano", idade: 22, altura: 1.8 },
+      { nome: "Artur", idade: 10, altura: 1.2 },
+      { nome: "Soter", idade: 70, altura: 1.9 }
+   ]
+   let autorizadas = pessoas.filter((pessoa)=>{
+      if(pessoa.idade>14 && pessoa.idade<60 && pessoa.altura>=1.5){
+         return true
+      }
+      return false
+   })
+   return autorizadas
 }
-
 
 // Exercício 18, letra B
 
-function retornaPessoasNaoAutorizadas(pessoas) {
-   // implemente sua lógica aqui
+function retornaPessoasNaoAutorizadas() {
+   const pessoas = [
+      { nome: "Paula", idade: 12, altura: 1.8 },
+      { nome: "João", idade: 20, altura: 1.3 },
+      { nome: "Pedro", idade: 15, altura: 1.9 },
+      { nome: "Luciano", idade: 22, altura: 1.8 },
+      { nome: "Artur", idade: 10, altura: 1.2 },
+      { nome: "Soter", idade: 70, altura: 1.9 }
+   ]
+   let naoAutorizadas = pessoas.filter((pessoa)=>{
+      if(pessoa.idade<=14 && pessoa.idade>=60 && pessoa.altura<1.5){
+         return true
+      }
+      return false
+   })
+   return naoAutorizadas
 }
 
 //Exercício 19
