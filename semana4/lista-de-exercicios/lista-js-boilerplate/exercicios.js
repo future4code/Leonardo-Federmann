@@ -24,7 +24,7 @@ function retornaNumerosParesElevadosADois(array) {
 
 function retornaNumerosPares(array) {
    //Elaborei duas soluções para este exercício: uma utilizando o que aprendemos na semana passada (comitada)
-   //e uma usando funções de array, aprendidas nessa semana (essa é a solução vigente):
+   //e uma usando funções de array, aprendidas nessa semana (solução vigente):
 
    // let pares = []
    // for (n of array){
@@ -77,7 +77,7 @@ function retornaExpressoesBooleanas() {
 function retornaNNumerosPares(n) {
    let arrayDePares = []
    for (let i = 0; i < n; i++) {
-      arrayDePares.push(i*2)
+      arrayDePares.push(i * 2)
    }
    return arrayDePares
 }
@@ -125,26 +125,41 @@ function comparaDoisNumeros(num1, num2) {
 // Exercício 10
 
 function segundoMaiorEMenor(array) {
+
+   //Utilizei a função do exercício 11 na solução do 10:
    let arrayOrdenada = ordenaArray(array)
-   let resultado = [arrayOrdenada[arrayOrdenada.length - 2], arrayOrdenada[1]]
-   return resultado
+   let segundoMaiorEMenor = [arrayOrdenada[arrayOrdenada.length - 2], arrayOrdenada[1]]
+   return segundoMaiorEMenor
 }
 
 //Exercício 11
 
 function ordenaArray(array) {
+   
+   //Para esse exercício, elaborei duas soluções: uma utilizando array.sort (comitada)
+   //e uma sem utilizá-la, conforme solicitado no desafio (solução vigente):
+
+   // function callback(a,b){
+   //    return a-b
+   // }
+   // array.sort(callback)
+   // return array
+
+   //A variável arrayIntermediaria (declarada abaixo) foi inclusa para evitar alterações na array original.
    let arrayIntermediaria = array
    let arrayOrdenada = []
    for (let i = 0; i < array.length; i++) {
       let menor = arrayIntermediaria[0]
-      //LÓGICA PARA PEGAR O MENOR
       for (n of arrayIntermediaria) {
          if (n < menor) {
             menor = n
          }
       }
-      //FIM DA LÓGICA PARA PEGAR O MENOR
       arrayOrdenada.push(menor)
+
+      //A função do exercício 4 foi utilizada para alterar o valor do menor elemento na arrayIntermediaria
+      //e aumentar seu valor, levando-o a não mais ser o maior (permitindo, assim, seguir para o segundo
+      //menor elemento, depois para o terceiro e assim por diante):
       arrayIntermediaria[array.indexOf(menor)] = retornaMaiorNumero(arrayIntermediaria)
    }
    return arrayOrdenada
@@ -153,11 +168,11 @@ function ordenaArray(array) {
 // Exercício 12
 
 function filmeFavorito() {
-   let filme ={
+   let filme = {
       nome: 'O Diabo Veste Prada',
-      ano:2006,
-      diretor:'David Frankel',
-      atores:['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
+      ano: 2006,
+      diretor: 'David Frankel',
+      atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
    }
    return filme
 }
@@ -166,22 +181,22 @@ function filmeFavorito() {
 
 function imprimeChamada() {
    let filme = filmeFavorito()
-   let frase = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por `
-   for (let i=0; i<filme.atores.length-1; i++){
-      frase += filme.atores[i] + ', '
+   let anuncio = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por `
+   for (let i = 0; i < filme.atores.length - 1; i++) {
+      anuncio += filme.atores[i] + ', '
    }
-   frase += filme.atores[filme.atores.length-1] + '.'
-   return frase
+   anuncio += filme.atores[filme.atores.length - 1] + '.'
+   return anuncio
 }
 
 // Exercício 14
 
 function criaRetangulo(lado1, lado2) {
-   let informacoesRetangulo ={
+   let informacoesRetangulo = {
       largura: lado1,
       altura: lado2,
-      perimetro: 2*(lado1 + lado2),
-      area: lado1*lado2
+      perimetro: 2 * (lado1 + lado2),
+      area: lado1 * lado2
    }
    return informacoesRetangulo
 }
@@ -206,8 +221,8 @@ const arrayDePessoas = [
 
 function maioresDe18(arrayDePessoas) {
    let adultos = []
-   for (n of arrayDePessoas){
-      if(n.idade>=18){
+   for (n of arrayDePessoas) {
+      if (n.idade >= 18) {
          adultos.push(n)
       }
    }
@@ -218,8 +233,8 @@ function maioresDe18(arrayDePessoas) {
 
 function menoresDe18(arrayDePessoas) {
    let criancasEAdolescentes = []
-   for (n of arrayDePessoas){
-      if(n.idade<18){
+   for (n of arrayDePessoas) {
+      if (n.idade < 18) {
          criancasEAdolescentes.push(n)
       }
    }
@@ -231,19 +246,18 @@ function menoresDe18(arrayDePessoas) {
 const array = [1, 2, 3, 4, 5, 6]
 
 function multiplicaArrayPor2(array) {
-   let dobro = array.map((num)=>{
-      return 2*num
+   let dobro = array.map((num) => {
+      return 2 * num
    })
-
    return dobro
 }
 
 // Exercício 17, letra B
 
 function multiplicaArrayPor2S(array) {
-   let frase = multiplicaArrayPor2(array)
+   let dobro = multiplicaArrayPor2(array)
    let fraseDobro = []
-   for (n of frase){
+   for (n of dobro) {
       fraseDobro.push(String(n))
    }
    return fraseDobro
@@ -252,45 +266,33 @@ function multiplicaArrayPor2S(array) {
 // Exercício 17, letra C
 
 function verificaParidade(array) {
-   let frases = []
-   for(n of array){
-      if(n%2===0){
-         frases.push(`${n} é par`)
-      } else{
-         frases.push(`${n} é ímpar`)
+   let parOuImpar = []
+   for (n of array) {
+      if (n % 2 === 0) {
+         parOuImpar.push(`${n} é par`)
+      } else {
+         parOuImpar.push(`${n} é ímpar`)
       }
    }
-   return frases
+   return parOuImpar
 }
 
 // Exercício 18
 
-//O teste desse exercício não estava funcionando mesmo com a resolução estando correta,
-//pois a array "pessoas" era reconhecida como undefined assim que entrava na função.
-//Decidi, portanto, declarar exatamente a mes array dentro da função para evitar que isso acontecesse.
-//Por esse motivo, comitei a array abaixo.
-// const pessoas = [
-//    { nome: "Paula", idade: 12, altura: 1.8 },
-//    { nome: "João", idade: 20, altura: 1.3 },
-//    { nome: "Pedro", idade: 15, altura: 1.9 },
-//    { nome: "Luciano", idade: 22, altura: 1.8 },
-//    { nome: "Artur", idade: 10, altura: 1.2 },
-//    { nome: "Soter", idade: 70, altura: 1.9 }
-// ]
+const pessoas = [
+   { nome: "Paula", idade: 12, altura: 1.8 },
+   { nome: "João", idade: 20, altura: 1.3 },
+   { nome: "Pedro", idade: 15, altura: 1.9 },
+   { nome: "Luciano", idade: 22, altura: 1.8 },
+   { nome: "Artur", idade: 10, altura: 1.2 },
+   { nome: "Soter", idade: 70, altura: 1.9 }
+]
 
 //Exercício 18, letra A
 
 function retornaPessoasAutorizadas() {
-   const pessoas = [
-      { nome: "Paula", idade: 12, altura: 1.8 },
-      { nome: "João", idade: 20, altura: 1.3 },
-      { nome: "Pedro", idade: 15, altura: 1.9 },
-      { nome: "Luciano", idade: 22, altura: 1.8 },
-      { nome: "Artur", idade: 10, altura: 1.2 },
-      { nome: "Soter", idade: 70, altura: 1.9 }
-   ]
-   let autorizadas = pessoas.filter((pessoa)=>{
-      if(pessoa.idade>14 && pessoa.idade<60 && pessoa.altura>=1.5){
+   let autorizadas = pessoas.filter((pessoa) => {
+      if (pessoa.idade > 14 && pessoa.idade < 60 && pessoa.altura >= 1.5) {
          return true
       }
       return false
@@ -301,16 +303,8 @@ function retornaPessoasAutorizadas() {
 // Exercício 18, letra B
 
 function retornaPessoasNaoAutorizadas() {
-   const pessoas = [
-      { nome: "Paula", idade: 12, altura: 1.8 },
-      { nome: "João", idade: 20, altura: 1.3 },
-      { nome: "Pedro", idade: 15, altura: 1.9 },
-      { nome: "Luciano", idade: 22, altura: 1.8 },
-      { nome: "Artur", idade: 10, altura: 1.2 },
-      { nome: "Soter", idade: 70, altura: 1.9 }
-   ]
-   let naoAutorizadas = pessoas.filter((pessoa)=>{
-      if(pessoa.idade<=14 && pessoa.idade>=60 && pessoa.altura<1.5){
+   let naoAutorizadas = pessoas.filter((pessoa) => {
+      if (pessoa.idade <= 14 || pessoa.idade >= 60 || pessoa.altura < 1.5) {
          return true
       }
       return false
@@ -321,14 +315,38 @@ function retornaPessoasNaoAutorizadas() {
 //Exercício 19
 
 const consultas = [
-   { nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
-   { nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
-   { nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
-   { nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+   { nome: "João", genero: "masculino", cancelada: false, dataDaConsulta: "01/10/2019" },
+   { nome: "Pedro", genero: "masculino", cancelada: true, dataDaConsulta: "02/10/2019" },
+   { nome: "Paula", genero: "feminino", cancelada: false, dataDaConsulta: "03/11/2019" },
+   { nome: "Márcia", genero: "feminino", cancelada: true, dataDaConsulta: "04/11/2019" }
 ]
 
-function retornaEmailConsulta(consultas) {
-   // implemente sua lógica aqui
+function retornaEmailConsulta() {
+   let textoDoEmail
+   let emailsDeRetorno = consultas.map((paciente) => {
+      let titulo
+      let pronomeObliquo
+      switch (paciente.genero) {
+         case 'masculino':
+            titulo = 'Sr.'
+            pronomeObliquo = 'lo'
+            break;
+         case 'feminino':
+            titulo = 'Sra.'
+            pronomeObliquo = 'la'
+            break;
+         default:
+            break;
+      }
+      if (paciente.cancelada === false) {
+         textoDoEmail = `Olá, ${titulo} ${paciente.nome}. Estamos enviando esta mensagem para lembrá-${pronomeObliquo} da sua consulta no dia ${paciente.dataDaConsulta}. Por favor, acuse o recebimento deste email.`
+         return textoDoEmail
+      } else {
+         textoDoEmail = `Olá, ${titulo} ${paciente.nome}. Infelizmente sua consulta marcada para o dia ${paciente.dataDaConsulta} foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la.`
+         return textoDoEmail
+      }
+   })
+   return emailsDeRetorno
 }
 
 //Exercício 20
@@ -343,5 +361,12 @@ const contas = [
 ]
 
 function atualizaSaldo() {
-   // implemente sua lógica aqui
+   contas.forEach((pessoa)=>{
+      let gastos = 0
+      for(n of pessoa.compras){
+         gastos+=n
+      }
+      pessoa.saldoTotal -= gastos
+   })
+   return contas
 }
