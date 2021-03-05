@@ -75,13 +75,9 @@ function retornaExpressoesBooleanas() {
 //Exercício 7
 
 function retornaNNumerosPares(n) {
-   let nPares = ''
    let arrayDePares = []
-   for(let i=0; i<n; i++){
-      arrayDePares.push(i)
-   }
-   for(let i=0; i<arrayDePares.length; i++){
-      arrayDePares[i]*=2
+   for (let i = 0; i < n; i++) {
+      arrayDePares.push(i*2)
    }
    return arrayDePares
 }
@@ -89,11 +85,11 @@ function retornaNNumerosPares(n) {
 // Exercício 8
 
 function checaTriangulo(a, b, c) {
-   if(a===b && b===c){
+   if (a === b && b === c) {
       return 'Equilátero'
-   } else if (a===b || b===c || c===a){
+   } else if (a === b || b === c || c === a) {
       return 'Isósceles'
-   } else{
+   } else {
       return 'Escaleno'
    }
 }
@@ -102,25 +98,25 @@ function checaTriangulo(a, b, c) {
 
 function comparaDoisNumeros(num1, num2) {
    let objeto = {
-      maiorNumero:0,
-      maiorDivisivelporMenor:true,
-      diferenca:0
+      maiorNumero: 0,
+      maiorDivisivelporMenor: true,
+      diferenca: 0
    }
-   if(num1>num2){
-      objeto.maiorNumero=num1
-      objeto.diferenca=num1-num2
-      if(num1%num2===0){
-         objeto.maiorDivisivelporMenor=true
-      } else{
-         objeto.maiorDivisivelporMenor=false
+   if (num1 > num2) {
+      objeto.maiorNumero = num1
+      objeto.diferenca = num1 - num2
+      if (num1 % num2 === 0) {
+         objeto.maiorDivisivelporMenor = true
+      } else {
+         objeto.maiorDivisivelporMenor = false
       }
-   } else{
+   } else {
       objeto.maiorNumero = num2
-      objeto.diferenca=num2-num1
-      if(num2%num1===0){
-         objeto.maiorDivisivelporMenor=true
-      } else{
-         objeto.maiorDivisivelporMenor=false
+      objeto.diferenca = num2 - num1
+      if (num2 % num1 === 0) {
+         objeto.maiorDivisivelporMenor = true
+      } else {
+         objeto.maiorDivisivelporMenor = false
       }
    }
    return objeto
@@ -130,7 +126,7 @@ function comparaDoisNumeros(num1, num2) {
 
 function segundoMaiorEMenor(array) {
    let arrayOrdenada = ordenaArray(array)
-   let resultado = [arrayOrdenada[arrayOrdenada.length-2], arrayOrdenada[1]]
+   let resultado = [arrayOrdenada[arrayOrdenada.length - 2], arrayOrdenada[1]]
    return resultado
 }
 
@@ -139,12 +135,12 @@ function segundoMaiorEMenor(array) {
 function ordenaArray(array) {
    let arrayIntermediaria = array
    let arrayOrdenada = []
-   for(let i=0; i<array.length; i++){
+   for (let i = 0; i < array.length; i++) {
       let menor = arrayIntermediaria[0]
       //LÓGICA PARA PEGAR O MENOR
-      for(n of arrayIntermediaria){
-         if(n<menor){
-            menor=n
+      for (n of arrayIntermediaria) {
+         if (n < menor) {
+            menor = n
          }
       }
       //FIM DA LÓGICA PARA PEGAR O MENOR
@@ -157,25 +153,44 @@ function ordenaArray(array) {
 // Exercício 12
 
 function filmeFavorito() {
-   // implemente sua lógica aqui
+   let filme ={
+      nome: 'O Diabo Veste Prada',
+      ano:2006,
+      diretor:'David Frankel',
+      atores:['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
+   }
+   return filme
 }
 
 // Exercício 13
 
 function imprimeChamada() {
-   // implemente sua lógica aqui
+   let filme = filmeFavorito()
+   let frase = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por `
+   for (let i=0; i<filme.atores.length-1; i++){
+      frase += filme.atores[i] + ', '
+   }
+   frase += filme.atores[filme.atores.length-1] + '.'
+   return frase
 }
 
 // Exercício 14
 
 function criaRetangulo(lado1, lado2) {
-   // implemente sua lógica aqui
+   let informacoesRetangulo ={
+      largura: lado1,
+      altura: lado2,
+      perimetro: 2*(lado1 + lado2),
+      area: lado1*lado2
+   }
+   return informacoesRetangulo
 }
 
 // Exercício 15
 
 function anonimizaPessoa(pessoa) {
-   // implemente sua lógica aqui
+   pessoa.nome = 'ANÔNIMO'
+   return pessoa
 }
 
 // Exercício 16
