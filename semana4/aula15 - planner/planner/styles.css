@@ -1,0 +1,71 @@
+/* Alterei alguns aspectos da estilização */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: aqua;
+}
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 90vh;
+    margin-bottom: 5px;
+}
+
+#tarefa, #horarios, #dias-semana, .semana h3, .botao, .itemPlanner{
+    background-color: white;
+}
+
+.itemLista{
+background-color: white;
+}
+
+.botao{
+    margin: 0 5px;
+    padding: .5px;
+}
+
+.semana {
+    border: 1px black solid;
+    border-radius: 10px;
+    width: 14%;
+    padding: 5px;
+    background-color: white;
+    text-align: center;
+}
+
+/* DESAFIO 5: tornar a página responsiva para IPhone 6/7/8 */
+@media screen and (max-device-width: 400px){
+
+#tarefa{
+    width: 60%;
+}
+
+.descricaoTarefa{
+    font-size: 90%;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(2,1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-bottom: 5px;
+}
+
+.semana {
+    width: 100%;
+    padding: 5px;
+}
+
+}
