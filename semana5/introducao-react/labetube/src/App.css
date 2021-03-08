@@ -1,0 +1,164 @@
+/* AS ALTERAÇÕES REALIZADAS NESTE CSS SÃO ACOMPANHADAS DE COMENTÁRIOS EXPLICANDO-AS */
+
+body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+
+.tela-inteira {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  /* Removi o background-color do header, pois o Youtube tampouco o possui: */
+  /* background-color: orange; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  height: 10%;
+}
+
+/* Acrescentei a seguinte estilização para o campo de busca: */
+#campoDeBusca{
+  width: 50%;
+  height: 20px;
+}
+
+/* Acrescentei a seguinte estilização para os botões no header: */
+header button{
+  background: none;
+  border: none;
+  height: 100%;
+  margin: 0 20px;
+  transform: scale(1.5);
+}
+
+main {
+  min-height: 80%;
+  display: flex;
+}
+
+.menu-vertical {
+  flex-basis: 200px;
+  /* Removi as bordas do menu principal porque o Youtube tampouco as possui: */
+  /* border-right-style: solid;
+  border-right-width: thin; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.botoes-meunu-vertical {
+  
+  list-style-type: none;
+  
+  /* Inclui o seguinte padding para espaçamento no menu: */
+  padding: 5px 0;
+}
+
+/* Inclui o seguinte efeito de hover, de modo a tornar a interação do usuário com o menu mais parecida com a do Youtube: */
+.botoes-meunu-vertical:hover{
+  background-color: #d0d0d0;
+}
+
+/* Inclui os seguintes comandos no ul para centralizar seus itens no menu: */
+ul{
+  margin-top: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.painel-de-videos {
+  padding-left: 20px;
+  padding-top: 20px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 24.8% 0.2%);
+
+  /* Alterei a altura das linhas de 270px para 250px de modo a impedi-las de invadir o espaço do footer: */
+  grid-template-rows: repeat(2, 250px 20px);
+}
+
+/* Criei a classe "Imagem" para reduzir o tamanho das imagens, de modo a criar maior espaçamento entre elas. */
+.imagem{
+  transform:scale(0.9)
+}
+
+.media1 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.media2 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.media3 {
+  grid-column-start: 5;
+  grid-row-start: 1;
+}
+
+.media4 {
+  grid-column-start: 7;
+  grid-row-start: 1;
+}
+
+.media5 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.media6 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+.media7 {
+  grid-column-start: 5;
+  grid-row-start: 3;
+}
+
+.media8 {
+  grid-column-start: 7;
+  grid-row-start: 3;
+}
+
+
+.box-pagina-principal {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr;
+  /* Removi as bordas dos vídeos: */
+  /* border-style: solid;
+  border-width: thin;  */
+  align-items: start;
+  justify-items: stretch;
+}
+
+
+footer {
+  height: 10%;
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.box-pagina-principal > img {
+  width: 100%;
+  height: 200px;
+}
+
+h4 {
+  margin-left: 20px;
+}
+
