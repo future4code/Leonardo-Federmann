@@ -1,0 +1,26 @@
+.sharing-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.escolha-da-rede-social{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.iconeDeRedeSocial{
+    height: 30px;
+}
+
+.inputPost{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.texto-do-post{
+    width: 90%;
+}
