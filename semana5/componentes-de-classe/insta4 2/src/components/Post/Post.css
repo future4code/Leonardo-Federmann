@@ -1,0 +1,53 @@
+.post-container {
+    border: 1px solid gray;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.post-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+/* Os três seletores abaixo foram inseridos para o Desafio 1: */
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.marcacao{
+    padding-right: 10px;
+    transform:scale(1.8);
+    color: black;
+}
+
+.marcacao:hover{
+    cursor: pointer;
+}
+
+/* Seletor adicionado para o Desafio 2: */
+.iconeCompartilhamento{
+    width: 20px;
+}
+
+.post-footer {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+}
+
+.user-photo {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.post-photo {
+    width: 100%;
+}
