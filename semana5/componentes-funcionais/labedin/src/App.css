@@ -12,6 +12,10 @@
   margin-top: 30px;
 }
 
+.introducao{
+  background-color: black;
+}
+
 .container-de-competencias{
   display: flex;
   flex-direction: row;
