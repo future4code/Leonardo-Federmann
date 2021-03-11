@@ -71,7 +71,7 @@ class App extends React.Component {
     })
   }
 
-  adicionarPost = () =>{
+  adicionarPost = () => {
     let novoPost = {
       nome: this.state.inputNome,
       foto: this.state.inputFoto,
@@ -80,9 +80,9 @@ class App extends React.Component {
     let arrayIntermediaria = [...this.state.postsObjetos, novoPost]
     this.setState({
       postsObjetos: arrayIntermediaria,
-      inputNome:'',
-      inputFoto:'',
-      inputFotoPost:''
+      inputNome: '',
+      inputFoto: '',
+      inputFotoPost: ''
     })
   }
 
@@ -98,7 +98,7 @@ class App extends React.Component {
     return (
       <div className={'app-container'}>
         <Formulario>
-        <h3>Adicionar novo post</h3>
+          <h3>Adicionar novo post</h3>
           <InputDoFormulario value={this.state.inputNome} onChange={this.onChangeInputNome} placeholder={'Nome'} />
           <InputDoFormulario value={this.state.inputFoto} onChange={this.onChangeInputFoto} placeholder={'Link para sua foto de perfil'} />
           <InputDoFormulario value={this.state.inputFotoPost} onChange={this.onChangeInputFotoPost} placeholder={'Link para a foto do post'} />
