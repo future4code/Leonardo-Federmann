@@ -25,16 +25,27 @@ margin: 20px;
 
 export default class Etapa1 extends React.Component {
 
+    state={
+        cursouES: false
+    }
+
     render() {
+
+        const ensinoSuperior = (event) =>{
+            if(event.target.value==="Ensino Superior Incompleto" || event.target.value==="Ensino Superior Completo"){
+                this.setState({cursouES: false})
+            } else{this.setState({cursouES: true})}
+        }
+
         return <MainContainer>
             <Titulo>Dados Gerais</Titulo>
             <div>
                 <PerguntaAberta pergunta={'Nome completo:'} placeholder={'Exemplo: Robson Almeida'} />
                 <PerguntaAberta pergunta={'Idade:'} placeholder={'Exemplo: 27'} />
-                <PerguntaFechada pergunta={'Escolaridade:'} default={'Escolaridade'} arrayDeOpcoes={['Ensino Médio Incompleto', 'Ensino Médio Completo', 'Ensino Superior Incompleto', 'Ensino Superior Completo']} />
+                <PerguntaFechada ensino={ensinoSuperior} pergunta={'Escolaridade:'} default={'Escolaridade'} arrayDeOpcoes={['Ensino Médio Incompleto', 'Ensino Médio Completo', 'Ensino Superior Incompleto', 'Ensino Superior Completo']} />
             </div>
-            <ContainerBotoes>
-                <button onClick={this.props.proxima}>Avançar</button>
+            <ContainerBotoes> 
+                {this.state.cursouES ? <button onClick={this.props.pulaUma}>Avançar</button> : <button onClick={this.props.proxima}>Avançar</button>}
             </ContainerBotoes>
         </MainContainer>
     }

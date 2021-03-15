@@ -30,6 +30,7 @@ export default class Etapa2 extends React.Component {
             <div>
                 <PerguntaAberta pergunta={'Qual curso?'} placeholder={'Exemplo: Administração'} />
                 <PerguntaAberta pergunta={'Qual a unidade de ensino?'} placeholder={'Exemplo: USP'} />
+                <PerguntaAberta pergunta={'Por qual motivo você não concluiu o Ensino Superior, caso não o tenha concluído?'} placeholder={'Exemplo: Motivos financeiros...'} />
             </div>
             <ContainerBotoes>
                 <button onClick={this.props.ultima}>Voltar</button>

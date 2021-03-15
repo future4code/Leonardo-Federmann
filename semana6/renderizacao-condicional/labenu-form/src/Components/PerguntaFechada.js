@@ -15,8 +15,8 @@ export default class Etapa1 extends React.Component {
 
         return <div>
             <Pergunta for={this.props.pergunta}>{this.props.pergunta}</Pergunta>
-            <select id={this.props.pergunta}>
-                <option value={this.props.default} disabled selected>{this.props.default}</option>
+            <select onChange={this.props.ensino} id={this.props.pergunta}>
+                <option disabled selected>{this.props.default}</option>
                 {this.props.arrayDeOpcoes.map((opcao) => {
                     return <option value={opcao}>{opcao}</option>
                 })}

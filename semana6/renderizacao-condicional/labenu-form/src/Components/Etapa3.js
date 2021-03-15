@@ -27,10 +27,8 @@ export default class Etapa3 extends React.Component {
 
     render() {
         return <MainContainer>
-            <Titulo>Informações sobre Ensino Superior</Titulo>
+            <Titulo>Informações complementares</Titulo>
             <div>
-
-                <PerguntaAberta pergunta={'Por qual motivo você não concluiu o Ensino Superior, caso não o tenha concluído?'} placeholder={'Exemplo: Motivos financeiros...'} />
                 <PerguntaFechada pergunta={'Você realizou algum curso complementar?'} default={'Curso complementar'} arrayDeOpcoes={['Curso técnico', 'Curso de inglês', 'Outros cursos', 'Não fiz curso complementar']} />
             </div>
             <ContainerBotoes>

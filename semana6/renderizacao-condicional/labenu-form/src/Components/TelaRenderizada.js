@@ -10,6 +10,12 @@ export default class TelaRenderizada extends React.Component {
         etapa: 1
     }
 
+    avancarDuasPaginas = () => {
+        if (this.state.etapa < 4) {
+            this.setState({ etapa: this.state.etapa + 2 })
+        }
+    }
+    
     avancar = () => {
         if (this.state.etapa < 4) {
             this.setState({ etapa: this.state.etapa + 1 })
@@ -26,7 +32,7 @@ export default class TelaRenderizada extends React.Component {
 
         switch (this.state.etapa) {
             case 1:
-                return <Etapa1 proxima={this.avancar} />
+                return <Etapa1 proxima={this.avancar} pulaUma={this.avancarDuasPaginas}/>
             case 2:
                 return <Etapa2 proxima={this.avancar} ultima={this.voltar} />
             case 3:
