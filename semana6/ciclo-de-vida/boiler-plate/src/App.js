@@ -23,7 +23,7 @@ const InputsContainer = styled.div`
 
 class App extends React.Component {
   state = {
-    tarefas:[],
+    tarefas: [],
     // tarefas: JSON.parse(localStorage.getItem('listaSalva')),
     inputValue: '',
     filtro: '',
@@ -48,7 +48,10 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-
+    let listaSalva = JSON.parse(localStorage.getItem('listaSalva'))
+    if(listaSalva){
+    this.setState({tarefas: JSON.parse(localStorage.getItem('listaSalva'))})
+  }
   };
 
   onChangeInput = (event) => {
@@ -84,11 +87,9 @@ class App extends React.Component {
   //DESAFIO 1: criar funcionalidade para excluir uma tarefa da lista:
   excluirTarefa = (idDaTarefa) => {
     let arrayIntermediaria = [...this.state.tarefas]
-    console.log(arrayIntermediaria)
     let novaLista = arrayIntermediaria.filter((tarefa) => {
       return tarefa.id !== idDaTarefa
     })
-    console.log(novaLista)
     localStorage.setItem('listaSalva', JSON.stringify(novaLista))
     novaLista = localStorage.getItem('listaSalva')
     this.setState({ tarefas: JSON.parse(localStorage.getItem('listaSalva')) })
@@ -127,20 +128,32 @@ class App extends React.Component {
   }
 
 
-  //DESAFIO 6: EM DESENVOLVIMENTO...
+  //DESAFIO 6: ordenar os itens da lista por ordem alfabética:
   ordemAlfabetica = () => {
-    let arrayIntermediariaObjetos = [...this.state.tarefas]
-    let arrayIntermediariaStrings = arrayIntermediariaObjetos.map((tarefa) => {
-      return tarefa.texto
-    })
-    arrayIntermediariaStrings.sort()
-    console.log(arrayIntermediariaStrings)
+    let arrayIntermediaria = [...this.state.tarefas]
 
+    //A seguinte função foi retirada do site: https://www.edsonemiliano.com.br/blog/como-ordenar-uma-array-de-objetos-com-javascript-sort/#:~:text=Caso%20voc%C3%AA%20tenha%20um%20array,usar%20o%20m%C3%A9todo%20sort().&text=return%20(a.,nome%20%3E%20b.
+
+    arrayIntermediaria.sort((a, b) => {
+      return (a.texto > b.texto) ? 1 : ((b.texto > a.texto) ? -1 : 0)
+    })
+    localStorage.setItem('listaSalva', JSON.stringify(arrayIntermediaria))
+    this.setState({ tarefas: JSON.parse(localStorage.getItem('listaSalva')) })
+  }
+
+  ordemAlfabeticaInversa = () => {
+    let arrayIntermediaria = [...this.state.tarefas]
+    arrayIntermediaria.sort((a, b) => {
+      return (b.texto > a.texto) ? 1 : ((a.texto > b.texto) ? -1 : 0)
+    })
+    localStorage.setItem('listaSalva', JSON.stringify(arrayIntermediaria))
+    this.setState({ tarefas: JSON.parse(localStorage.getItem('listaSalva')) })
   }
 
   //-----------------------------------------INÍCIO DA RENDERIZAÇÃO-----------------------------------------
 
   render() {
+
     let listaFiltrada = []
 
     //DESAFIO 5: o if else a seguir for adicionado para que o usuário opte por visualizar a lista completa de tarefas ou apenas com o filtro inserido no campo de busca:
@@ -186,7 +199,6 @@ class App extends React.Component {
           <input id="busca" value={this.state.tarefaPesquisada} onChange={this.onChangeTarefaPesquisada} />
           <button onClick={this.buscarTarefa}>Buscar</button>
           <button onClick={this.mostrarListaCompleta}>Retornar à lista completa</button>
-          {console.log(this.state.tarefaPesquisada)}
         </InputsContainer>
         <hr></hr>
         <InputsContainer>
