@@ -9,6 +9,12 @@ import iconeComentario from '../../img/comment_icon.svg'
 import { SecaoComentario } from '../SecaoComentario/SecaoComentario'
 import SecaoCompartilhamento from '../SecaoCompartilhamento/SecaoCompartilhamento'
 
+ let PostContainer = styled.div`
+ border: 1px solid gray;
+  width: 300px;
+  margin-bottom: 10px;
+ `
+
 class Post extends React.Component {
   state = {
     curtido: false,
@@ -118,7 +124,7 @@ class Post extends React.Component {
       />
     }
 
-    return <div className={'post-container'}>
+    return <PostContainer>
       <div className={'post-header'}>
         <div className={'user'}>
           <img className={'user-photo'} src={this.props.fotoUsuario} alt={'Imagem do usuario'} />
@@ -154,7 +160,7 @@ class Post extends React.Component {
 
       {/* DESAFIO 2: variável que mostrará o campo de compartilhamento do post quando o usuário clicar no ícone de compartilhamento: */}
       {componenteCompartilhamento}
-    </div>
+    </PostContainer>
   }
 }
 
