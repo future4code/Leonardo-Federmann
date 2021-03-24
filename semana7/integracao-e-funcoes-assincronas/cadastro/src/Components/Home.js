@@ -15,10 +15,10 @@ export default class Home extends React.Component {
             <button onClick={this.props.goToList}>Ir para a lista de usuários</button>
             <hr></hr>
             <label for="name">Nome:</label>
-            <input type="text" id="name" onChange={this.props.onChangeName} value={this.props.name} placeholder="Ex: Robson Jesus"></input>
+            <input id="name" onChange={this.props.onChangeName} value={this.props.name} placeholder="Ex: Robson Jesus"></input>
             <hr></hr>
             <label for="email">Email:</label>
-            <input type="text" id="email" onChange={this.props.onChangeEmail} value={this.props.email} placeholder="Ex: robinho123@gmail.com"></input>
+            <input id="email" onChange={this.props.onChangeEmail} value={this.props.email} placeholder="Ex: robinho123@gmail.com"></input>
             <hr></hr>
             <button onClick={this.props.createUser}>Criar usuário</button>
         </MainContainer>
