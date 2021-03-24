@@ -83,7 +83,7 @@ export default class UserDetails extends React.Component {
                     :
 
                     <div>
-                        <h1>Detalhes do usuário {this.props.name}</h1>
+                        <h1>Detalhes do usuário {this.state.changedName}</h1>
                         <p>Nome: {this.state.changedName}</p>
                         <p>Email: {this.state.changedEmail}</p>
                         <button onClick={editUser}>Editar</button>
