@@ -35,7 +35,7 @@ export default class Header extends React.Component {
             <MainContainer>
                 <Logo src={"https://www.cbj.ca/wp-content/uploads/2019/06/SpaceX.png"} alt='SpaceX logo' />
                 <Text>
-                    <h2>Welcome to the SpaceX's site of missions! Choose one of the space missions below and check some of it's incredible information!</h2>
+                    <h2>Welcome to the SpaceX's site of missions! Choose one of the space missions below and check some of its incredible information!</h2>
                     <MissionSelection onChange={this.props.chooseOneMission}>
                         <option value="Choose a mission" selected disabled>Choose a mission</option>
                         {this.props.options}
