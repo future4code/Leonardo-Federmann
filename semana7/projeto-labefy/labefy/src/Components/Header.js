@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 
 const MainContainer = styled.header`
 background-color: aqua;
@@ -14,13 +13,13 @@ margin-bottom: 10px;
 `
 
 export default class Header extends React.Component {
-  
-  render(){
-  return (
-    <MainContainer >
-      <h1>Bem vindo ao Labefy</h1>
-      <Button onClick={this.props.goToPage}>{this.props.whichPage}</Button>
-    </MainContainer>
-  );
-  }
+
+    render() {
+        return (
+            <MainContainer >
+                <h1>Bem vindo ao Labefy</h1>
+                <Button onClick={this.props.goToPage}>{this.props.whichPage}</Button>
+            </MainContainer>
+        );
+    }
 }
