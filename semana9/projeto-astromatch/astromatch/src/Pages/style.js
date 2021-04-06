@@ -52,3 +52,10 @@ margin-left: 0.5em;
 export const Icon = styled.img`
 width: 25px;
 `
+
+export const ButtonsContainer = styled.section`
+width: 50%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+`
