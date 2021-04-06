@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import Home from './Components/Home'
-import UsersList from './Components/UsersList'
+import UsersInformation from './Components/UsersInformation'
 import UserDetails from './Components/UserDetails'
 
 
@@ -14,7 +14,7 @@ export default class App extends React.Component {
   }
 
   goToList = () => {
-    this.setState({ selectedScreen: 'usersList' })
+    this.setState({ selectedScreen: 'usersInformation' })
   }
 
   goToHome = () => {
@@ -38,8 +38,8 @@ export default class App extends React.Component {
       headers: {
         Authorization: 'leonardo-federmann-cruz'
       }
-    }).then((user) => {
-      alert(`Usuáro ${newUser.name} criado com sucesso!`)
+    }).then(() => {
+      alert(`Usuáro ${newUser.name} criado com sucesso com o email ${newUser.email}!`)
       this.setState({ name: '', email: '' })
     }).catch((error) => {
       alert('Favor digitar um email válido')
@@ -60,8 +60,8 @@ export default class App extends React.Component {
           createUser={this.createUser}
         />
         break
-      case 'usersList':
-        renderedScreen = <UsersList
+      case 'usersInformation':
+        renderedScreen = <UsersInformation
           goToHome={this.goToHome}
         />
         break

@@ -13,10 +13,16 @@ export default class UsersList extends React.Component {
     state = {
         usersList: [],
         seeDetails: false,
+        renderedScreen: '',
+        searchField: '',
     }
 
     componentDidMount() {
         this.getAllUsers()
+    }
+
+    onChangeSearchField = (e) => {
+        this.setState({ searchField: e.target.value })
     }
 
     getAllUsers = () => {
@@ -25,15 +31,27 @@ export default class UsersList extends React.Component {
                 Authorization: 'leonardo-federmann-cruz'
             }
         }).then((list) => {
-            this.setState({ usersList: list.data })
+            console.log(list.data)
+            this.setState({ usersList: list.data, searchField: '' })
         }).catch((error) => {
             alert('Ocorreu um erro no sistema e estamos trabalhando para resolver. Por favor, tente novamente mais tarde.')
         })
     }
 
-    deleteUser = (deletedUser) => {
+    search = async () => {
+        try {
+            let searchedUser = await axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${this.state.searchField}`, {
+                headers: {
+                    Authorization: 'leonardo-federmann-cruz'
+                }
+            })
+            this.setState({ usersList: searchedUser.data })
+        } catch {
+            alert('Houve um erro no sistema e estamos trabalhando para resolvê-lo. Por favor, tente novamente mais tarde.')
+        }
+    }
 
-        //DESAFIO 1: confirmar com o usuário se ele deseja apagar o item da lista antes de fazê-lo:
+    deleteUser = (deletedUser) => {
 
         if (window.confirm(`Tem certeza de que deseja deletar o usuário ${deletedUser.name}?`)) {
             axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${deletedUser.id}`, {
@@ -48,66 +66,49 @@ export default class UsersList extends React.Component {
         }
     }
 
-    //DESAFIO 2: não foi concluída, mas deixei comitadas as linhas que criei na tentativa de resolvê-lo:
-
-    // showDetails = (shownUser) => {
-
-    // }
-
-    // hideDetails = () => {
-    //     this.setState({ seeDetails: false })
-    // }
+    returnToList = () => {
+        console.log('a função de voltar para a lista está funcionando')
+    }
 
     render() {
 
-        //     let renderedList=[]
-        //     for(user of this.state.usersList){
-        //         let showDetails = () => {
-        //             this.setState({seeDetails: true})
-        //         }
-        //         let hideDetails = () => {
-        //         this.setState({ seeDetails: false })
-        //         if(this.state.seeDetails===false){
-        //             renderedList.push(<p>{user.name} <button onClick={showDetails}>Ver detalhes</button> <button onClick={() => this.deleteUser(user)}>Deletar usuário</button></p>)
-        //         } else{
-        //             <UserDetails 
-        //             name={user.name}
-        //             email={user.email}
-        //             returnToList={hideDetails}
-        //             />
-        //         }
-        // }
+        let hideDetails = () => {
+            this.setState({ seeDetails: false })
+            this.getAllUsers()
+        }
 
-        // }
-        let renderedList = this.state.usersList.map((user) => {
-            // let seeDetails=false
-            // let showDetails = () => {
-            //     seeDetails= true 
-            //     console.log(seeDetails)
-            // }
+        let checkDetails = (user) => {
+            console.log(user.email)
+            let newPage = <UserDetails
+                name={user.name}
+                email={user.email}
+                id={user.id}
+                returnToList={hideDetails}
+            />
+            this.setState({ renderedScreen: newPage, seeDetails: true })
+        }
 
-            // let hideDetails = () => {
-            //     seeDetails= false
-            // }
-            // if(seeDetails===false){
-            return <p>{user.name} <button onClick={() => this.deleteUser(user)}>Deletar usuário</button></p>
-            // }else{
-            //     return<li>{user.name} <button onClick={hideDetails}>Ocultar</button>
-            //     <UserDetails 
-            //     name={user.name}
-            //     email={user.email}
-            //     />
-            //     </li>
-            // }
+        let list = this.state.usersList.map((user) => {
+            return <p key={user.id}>{user.name} <button onClick={() => checkDetails(user)}>Ver detalhes</button>
+                <button onClick={() => this.deleteUser(user)}>Deletar usuário</button></p>
         })
+
         return <MainContainer>
-            <h1>Lista de usuários</h1>
-            <button onClick={this.props.goToHome}>Voltar</button>
-            <hr></hr>
-            {this.state.usersList.length > 0 ?
-                <div>{renderedList}</div> :
-                <p>Carregando...</p>
-            }
+            {this.state.usersList.length === 0 ?
+                <p>Carregando...</p> :
+                this.state.seeDetails ?
+                    <div>{this.state.renderedScreen}</div> :
+                    <div>
+                        <h1>Lista de usuários</h1>
+                        <button onClick={this.props.goToHome}>Voltar para a Home</button>
+                        <div><label for="search">Buscar: </label>
+                            <input value={this.state.searchField} onChange={this.onChangeSearchField} id="search" placeholder="Buscar por nome"></input>
+                            <button onClick={this.search}>Buscar</button>
+                            <button onClick={this.getAllUsers}>Finalizar busca</button>
+                        </div>
+                        <hr></hr>
+                        <div>{list}</div>
+                    </div>}
         </MainContainer>
     }
 }
