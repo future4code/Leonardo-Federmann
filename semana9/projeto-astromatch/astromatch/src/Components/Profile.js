@@ -8,7 +8,7 @@ export default function Profile(props) {
     return <MainContainer>
         <ProfileImage src={props.photo} alt={props.name} />
         <ProfileContainer>
-            <h1>{props.name}, {props.age} anos</h1>
+            <h1>{props.name}, {props.age}</h1>
             <p>{props.bio}</p>
         </ProfileContainer>
     </MainContainer>

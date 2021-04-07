@@ -17,9 +17,11 @@ flex-direction: column;
 align-items: center;
 background-color: white;
 width: 375px;
-height: 90vh;
+height: 100vh;
 border: 1px solid black;
-border-radius: 10px;
+@media(max-width: 800px){
+    width: 100%;
+}
 `
 
 export const Header = styled.header`
@@ -54,8 +56,9 @@ width: 25px;
 `
 
 export const ButtonsContainer = styled.section`
-width: 50%;
+width: 80%;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+margin-top: 1rem;
 `
