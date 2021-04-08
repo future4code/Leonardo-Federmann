@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Header from '../Components/Header'
 import MyMatch from '../Components/MyMatch'
 import ClearButton from '../Components/ClearButton'
-import { MainContainer, PhoneContainer, Header, Logo, Icon, Button } from './style'
-import { useEffect } from 'react/cjs/react.development'
+import Loading from '../Components/Loading'
+import { MainContainer, PhoneContainer } from './style'
 
 export default function SeeMatches(props) {
 
@@ -16,50 +16,43 @@ export default function SeeMatches(props) {
 
     const getMatches = async () => {
         try {
-            let matches = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/matches`)
+            let matches = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/leonardo/matches`)
             setMatchesList(matches.data.matches)
         } catch (error) {
             alert('Ops! Ocorreu um erro no site, mas já estamos trabalhando para que você continue conhecendo novas pessoas!')
-            console.log(error.response.data)
         }
     }
 
     const clearMatches = async () => {
         try {
-            await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/clear`)
+            await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/leonardo/clear`)
             getMatches()
         } catch (error) {
             alert('Ops! Ocorreu um erro no site, mas já estamos trabalhando para que você continue conhecendo novas pessoas!')
-            console.log(error.response.data)
         }
     }
 
     return <MainContainer>
         <PhoneContainer>
-            <Header>
-                <Logo>Astromatch &#9829;</Logo>
-                <Button onClick={props.checkOptions}><Icon src="https://image.flaticon.com/icons/png/512/2097/2097734.png" alt='Ver meus matches' /></Button>
-            </Header>
-            {matchesList !==[] ?
-            <React.Fragment>
-                {matchesList.map((match) => {
-                    return <MyMatch
-                        imageUrl={match.photo}
-                        name={match.name}
+            <Header
+                checkWhat={props.checkOptions}
+                iconUrl={'https://image.flaticon.com/icons/png/512/2097/2097734.png'}
+                buttonDescription={'Ver perfis'}
+            />
+            {matchesList.length > 0 ?
+                <React.Fragment>
+                    {matchesList.map((match) => {
+                        return <MyMatch
+                            imageUrl={match.photo}
+                            name={match.name}
+                        />
+                    })}
+                    <ClearButton
+                        clearMatches={clearMatches}
                     />
-                })}
-                <ClearButton
-                    clearMatches={clearMatches}
-                />
-            </React.Fragment>
-                // matchesList.map((match) => {
-                //     return <MyMatch
-                //         imageUrl={match.photo}
-                //         name={match.name}
-                //     />
-                // })
+                </React.Fragment>
                 :
-                <h1>Carregando...</h1>
+                <Loading />
             }
         </PhoneContainer>
     </MainContainer>

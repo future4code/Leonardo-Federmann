@@ -1,7 +1,37 @@
-import React from 'react'
 import styled from 'styled-components'
 
-export const MainContainer = styled.main`
+export const Header = styled.header`
+width: 100%;
+font-family: 'Edwardian Script ITC';
+font-size: 25px;
+background-color: #ffbaba;
+color: #a70000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 10%;
+`
+
+export const HeaderButton = styled.p`
+margin-right: 0.5em;
+background: none;
+border: none;
+cursor:pointer;
+:hover{
+    transform: scale(0.9);
+    transition: all 0.5s;
+}
+`
+
+export const Logo = styled.h1`
+margin-left: 0.5em;
+`
+
+export const HeaderIcon = styled.img`
+width: 25px;
+`
+
+export const ProfileContainer = styled.main`
 margin-top: 1rem;
 width: 90%;
 height: 70%;
@@ -9,6 +39,17 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+@keyframes entrance{
+    0%{
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 0.3;
+    }
+}
+animation: entrance 0.5s;
 `
 
 export const ProfileImage = styled.img`
@@ -18,7 +59,7 @@ border-radius: 10px;
 box-shadow: 0 0 0.3rem 0.3rem #8f9779;
 `
 
-export const ProfileContainer = styled.section`
+export const ProfileDescription = styled.section`
 height: 20%;
 width:90%;
 display: flex;
@@ -40,6 +81,8 @@ border:none;
 cursor: pointer;
 border: 1px solid ${props => props.color};
 border-radius: 50%;
+width: 60px;
+height:60px;
 padding: 0.5rem; 
 :hover{
     transform: scale(1.2);
@@ -48,17 +91,6 @@ padding: 0.5rem;
 }
 :active{
     background-color: ${props => props.activeColor};
-}
-`
-
-export const ClearButton = styled.button`
-margin-right: 0.5em;
-background: none;
-border: none;
-cursor:pointer;
-:hover{
-    transform: scale(0.9);
-    transition: all 0.5s;
 }
 `
 
@@ -85,8 +117,16 @@ border-radius: 50%;
 margin-left: 0.3rem;
 `
 
-export const MatchInfo = styled.section`
-display: flex;
-justify-content: flex-start;
-align-items: center;
+export const LoadingIcon = styled.img`
+width: 15%;
+@keyframes beat{
+    0%{
+        transform:scale(1.2);
+    }
+    100%{
+        transform: scace(1);
+    }
+}
+animation: beat 1s;
+animation-iteration-count: infinite;
 `

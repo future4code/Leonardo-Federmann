@@ -1,31 +1,33 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import SeeOptions from './Pages/SeeOptions'
 import SeeMatches from './Pages/SeeMatches'
 
 export default function App() {
   const [renderedPage, setRenderedPage] = useState('options')
 
-  const checkMatches = () =>{
+  useEffect(() => {
+    document.title = `Bem vindo ao Astromatch!`
+  }, [])
+
+  const checkMatches = () => {
     setRenderedPage('matches')
   }
 
-  const checkOptions = () =>{
+  const checkOptions = () => {
     setRenderedPage('options')
   }
 
   return (
-    <div>
+    <React.Fragment>
       {renderedPage === 'options' ?
-        <SeeOptions 
-        checkMatches={checkMatches}/>
+        <SeeOptions
+          checkMatches={checkMatches} />
         :
         renderedPage === 'matches' ?
-          <SeeMatches 
-          checkOptions={checkOptions}/>
+          <SeeMatches
+            checkOptions={checkOptions} />
           : <div></div>}
-    </div>
+    </React.Fragment>
   );
 }
 
