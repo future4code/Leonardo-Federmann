@@ -1,6 +1,6 @@
 ## ASTROMATCH
 
-Link para o site criado por meio so surge: http://astromatch-leonardo.surge.sh/ 
+Link para o site criado por meio so surge: http://astromatch-leonardo.surge.sh/   
 Projeto em React criado para uma atividade do curso de programação da Labenu com o intuito de ser uma simulação de um aplicativo de encontros online, similar ao Tinder. Os perfis utilizados são fictícios e se encontram na seguinte API, que serviu de base para a elaboração do site:
 
 https://documenter.getpostman.com/view/7549981/SW12yx56?version=latest  
