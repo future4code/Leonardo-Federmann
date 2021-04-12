@@ -7,10 +7,11 @@ export default function ListOfTripsPage(){
         <Header>
             <h2>Labe X</h2>
             <HeaderButtonsContainer>
-            <button>Voltar</button>
-            <button>Inscrição</button>
+            {/* <button>Voltar</button>
+            <button>Inscrição</button> */}
+            <p>Voltar</p>
+            <p>Inscrição</p>
         </HeaderButtonsContainer>
         </Header>
-        
     </MainContainer>
 }

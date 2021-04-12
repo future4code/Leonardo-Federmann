@@ -93,6 +93,7 @@ flex-direction: column;
 align-items: center;
 background-color: black;
 color:white;
+font-family: 'Arial';
 `
 
 export const Header = styled.header`
@@ -100,8 +101,11 @@ width: 100%;
 height: 10%;
 color: white;
 display: flex;
-justify-content: space-between;
+flex-direction: column;
 background-image:url('https://scx2.b-cdn.net/gfx/news/hires/2019/4-space.jpg');
+align-items: center;
+justify-content: space-between;
+border: 1px solid white;
 h2{
     margin-left: 5%;
     font-family: 'engravers MT';
@@ -111,11 +115,21 @@ h2{
 
 export const HeaderButtonsContainer = styled.nav`
 display: flex;
-align-items: center;
-justify-content: space-between;
-margin-right: 5%;
-width: 15%;
-button{
+width: 100%;
+p{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+    margin: 0;
+    padding: 1% 0;
+    :hover, :active{
+        background-color: white;
+        color: black;
+        cursor: pointer;
+    }
+}
+/* button{
     background-color: black;
     border: 1px solid white;
     color: white;
@@ -127,5 +141,5 @@ button{
         color: black;
         cursor: pointer;
     }
-}
+} */
 `
