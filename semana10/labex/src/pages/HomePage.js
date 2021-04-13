@@ -1,7 +1,10 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
+import {goToListOfTrips} from '../Coordination/Coordination'
 import {HomeContainer, HomePresentation, HomeContent, HomeDescription, HomeButtonsContainer} from './style'
 
 export default function HomePage(){
+    const history=useHistory()
 
     return <HomeContainer>
         <HomePresentation>
@@ -16,7 +19,7 @@ export default function HomePage(){
             </HomeDescription>
         </HomeContent>
         <HomeButtonsContainer>
-                <button>Sou passageiro</button>
+                <button onClick={()=>goToListOfTrips(history)}>Sou passageiro</button>
                 <button>Sou tripulante</button>
             </HomeButtonsContainer>
     </HomeContainer>

@@ -129,17 +129,42 @@ p{
         cursor: pointer;
     }
 }
-/* button{
-    background-color: black;
-    border: 1px solid white;
+`
+
+export const FiltersContainer = styled.section`
+font-family: 'Arial';
+width: 20%;
+color: white;
+background-color: #373854;
+border-radius: 20px 0;
+padding: 2%;
+margin: 2%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+input, button{
+    font-family: 'Arial';
+    width: 100%;
+    height: 30px;
+    margin: 0.5em 0;
+    background: black;
     color: white;
-    border-radius: 20px 0;
-    padding: 5%;
-    font-size: 1em;
-    :hover{
-        background-color: white;
-        color: black;
-        cursor: pointer;
-    }
-} */
+    padding: 0.2em;
+    border-radius: 10px 0;
+}
+`
+
+export const ListOfTripsContent = styled.section`
+height: 100%;
+display: flex;
+justify-content: space-between;
+`
+
+export const ListOfTrips = styled.section`
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
 `
