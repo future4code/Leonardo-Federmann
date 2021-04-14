@@ -1,10 +1,17 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
-import {goToListOfTrips} from '../Coordination/Coordination'
+import {goToAdminHomePage, goToListOfTrips, goToLogin} from '../Coordination/Coordination'
 import {HomeContainer, HomePresentation, HomeContent, HomeDescription, HomeButtonsContainer} from './style'
 
 export default function HomePage(){
     const history=useHistory()
+    const goToPrivateSection = () =>{
+        if(window.localStorage.getItem('token')){
+            goToAdminHomePage(history)
+        } else{
+            goToLogin(history)
+        }
+    }
 
     return <HomeContainer>
         <HomePresentation>
@@ -20,7 +27,7 @@ export default function HomePage(){
         </HomeContent>
         <HomeButtonsContainer>
                 <button onClick={()=>goToListOfTrips(history)}>Sou passageiro</button>
-                <button>Sou tripulante</button>
+                <button onClick={goToPrivateSection}>Sou tripulante</button>
             </HomeButtonsContainer>
     </HomeContainer>
 }

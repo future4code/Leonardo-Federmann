@@ -168,3 +168,36 @@ justify-content: center;
 align-items: center;
 flex-wrap: wrap;
 `
+
+export const LoginContainer = styled.main`
+display: flex;
+align-items: center;
+justify-content: space-around;
+`
+
+export const Login = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`
+
+export const TripsDetailContainer = styled.section`
+display: flex;
+align-items: center;
+justify-content: space-around;
+`
+
+export const TripInfo = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+`
+
+export const TripCandidates = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+`

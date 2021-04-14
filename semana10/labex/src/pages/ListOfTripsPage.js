@@ -14,8 +14,8 @@ export default function ListOfTripsPage() {
     const planet = useControlledInput()
     const date = useControlledInput()
     const duration = useControlledInput()
-    const filter = (e) =>{
-        console.log(e.target.value)
+    const filter = () =>{
+        
     }
     return <MainContainer>
         <Header>

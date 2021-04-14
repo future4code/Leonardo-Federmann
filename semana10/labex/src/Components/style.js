@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CardOfTrip = styled.div`
 width:18em;
-height: 20em;
+height: 23em;
 color:white;
 background-image: url('http://jornal.usp.br/wp-content/uploads/20170911_00_planeta_novo.jpg');
 border-radius: 10px;
@@ -27,6 +27,16 @@ div{
     background-color: white;
     border: 1px solid black;
 }
+button{
+  
+}
+`
+
+export const ButtonsContainer = styled.section`
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-around;
 `
 
 export const FiltersContainer = styled.section`
@@ -50,5 +60,37 @@ input, button{
     color: white;
     padding: 0.2em;
     border-radius: 10px 0;
+}
+`
+
+export const CandidateCard = styled.section`
+width:90%;
+/* height: 23em; */
+color:white;
+background-image: url('http://jornal.usp.br/wp-content/uploads/20170911_00_planeta_novo.jpg');
+border-radius: 10px;
+border: 1px solid white;
+margin: 2%;
+display: flex;
+flex-direction: column;
+align-items: center;
+h1{
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding: 1em;
+    text-align: center;
+}
+div{
+    margin-top: 0;
+    padding: 1em;
+}
+:hover{
+    background-image: none;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+button{
+  
 }
 `
