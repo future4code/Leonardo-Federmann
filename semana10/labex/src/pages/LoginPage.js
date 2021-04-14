@@ -1,7 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import {useControlledInput} from '../Custom Hooks/useControlledInput'
-import {goBack} from '../Coordination/Coordination'
+import {goBack, goToHome} from '../Coordination/Coordination'
 import axios from 'axios'
 import {HeaderButtonsContainer, LoginContainer, Login} from './style'
 
@@ -28,7 +28,7 @@ export default function LoginPage(){
         <input value={userEmail[0]} onChange={userEmail[1]}></input>
         <input value={password[0]} onChange={password[1]}></input>
         <HeaderButtonsContainer>
-            <button onClick={()=>goBack(history)}>Voltar</button>
+            <button onClick={()=>goToHome(history)}>Voltar</button>
             <button onClick={login}>Login</button>
         </HeaderButtonsContainer>
         </Login>
