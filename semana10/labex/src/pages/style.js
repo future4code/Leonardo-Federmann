@@ -94,6 +94,12 @@ align-items: center;
 background-color: black;
 color:white;
 font-family: 'Arial';
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
 `
 
 export const Header = styled.header`

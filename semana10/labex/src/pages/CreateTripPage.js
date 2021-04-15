@@ -1,47 +1,44 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import {useProtectedPage} from '../Custom Hooks/useProtectedPage'
-import {useControlledInput} from '../Custom Hooks/useControlledInput'
-import {usePlanetsArray} from '../Custom Hooks/usePlanetsArray'
-import {useHistory} from 'react-router-dom'
-import {goBack} from '../Coordination/Coordination'
+import { useProtectedPage } from '../Custom Hooks/useProtectedPage'
+import { useControlledInput } from '../Custom Hooks/useControlledInput'
+import { usePlanetsArray } from '../Custom Hooks/usePlanetsArray'
+import { useForm } from '../Custom Hooks/useForm'
+import { useHistory } from 'react-router-dom'
+import { goBack } from '../Coordination/Coordination'
 import { MainContainer, Header, HeaderButtonsContainer } from './style'
 
-export default function CreateTripPage(){
+export default function CreateTripPage() {
     const token = window.localStorage.getItem('token')
-    const [chosenPlanet, setChosenPlanet] = useState('') 
-    const history=useHistory()
-    const nameOfTrip = useControlledInput()
-    const date = useControlledInput()
-    const duration = useControlledInput()
-    const description = useControlledInput()
+    const history = useHistory()
     const planets = usePlanetsArray()
+    const [form, handleChange, resetForm] = useForm({name:'', planet:'Mercúrio', date:'', duration:'', description:''})
     useProtectedPage(history)
-    const logOut = () =>{
+    const logOut = () => {
         window.localStorage.removeItem('token')
         history.push('/login')
     }
-    const choosePlanet = (e) =>{
-        setChosenPlanet(e.target.value)
-    }
-    const createTrip = async()=>{
-        const newTrip = {
-            name: nameOfTrip[0],
-            planet: chosenPlanet,
-            date: date[0],
-            description: description[0],
-            durationInDays: duration[0],
-        }
-        try{
+    const createTrip = async (e) => {
+        e.preventDefault()
+        try {
+            console.log(form)
+            const newTrip = {
+                name: form.name,
+                planet: form.planet,
+                date: form.date,
+                description: form.description,
+                durationInDays: form.duration,
+            }
             await axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-federmann-cruz/trips`, newTrip, {
-                headers:{
+                headers: {
                     auth: token,
                 }
             })
             alert('Viagem criada com sucesso! Boa exploração espacial!')
-            setChosenPlanet('')
-        }catch(error){
-            alert(error)
+            resetForm()
+        } catch (error) {
+            alert('Ops! Ocorreu um problema no sistema, tenta criar sua viagem mais tarde! =)')
+            console.log(error.response)
         }
     }
     return <MainContainer>
@@ -52,16 +49,52 @@ export default function CreateTripPage(){
                 <p onClick={logOut}>Log Out</p>
             </HeaderButtonsContainer>
         </Header>
-            <input type="text" placeholder="Título da viagem" value={nameOfTrip[0]} onChange={nameOfTrip[1]} />
-            <select onChange={choosePlanet}>
-                <option selected disabled>Planeta</option>
-                {planets.map((planet)=>{
-                    return <option value={planet}>{planet}</option>
+        <form onSubmit={createTrip}>
+            <input 
+            type="text" 
+            placeholder="Título da viagem" 
+            value={form.name} 
+            onChange={handleChange}
+            name="name" 
+            required
+            pattern="^.{5,}$"
+            title="Digite no mínimo 5 letras."
+            />
+            <select onChange={handleChange} value={form.planet} name="planet">
+                <option selected disabled value="Planeta">Planeta</option>
+                {planets.map((planet) => {
+                    return <option key={planet} value={planet}>{planet}</option>
                 })}
             </select>
-            <input type="date" placeholder="Data de início" value={date[0]} onChange={date[1]} />
-            <input type="number" placeholder="Duração em dias" value={duration[0]} onChange={duration[1]} />
-            <textarea type="text" placeholder="Descrição" value={description[0]} onChange={description[1]} col="10" row="100" />
-            <button onClick={createTrip}>Criar viagem</button>
-        </MainContainer>
+            <input 
+            type="date" 
+            placeholder="Data de início" 
+            value={form.date} 
+            onChange={handleChange}
+            name="date"
+            required
+            />
+            <input
+             type="number" 
+             placeholder="Duração em dias" 
+             value={form.duration} 
+             onChange={handleChange}
+             name="duration" 
+             required
+             min={50}
+             title="Duração mínima de 50 dias."
+             />
+            <input 
+            type="text" 
+            placeholder="Descrição" 
+            value={form.description} 
+            onChange={handleChange}  
+            name="description"
+            required
+            pattern="^.{30,}$"
+            title="Digite no mínimo 30 caracteres."
+            />
+            <button>Criar viagem</button>
+        </form>
+    </MainContainer>
 }
