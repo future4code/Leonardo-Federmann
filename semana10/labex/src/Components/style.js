@@ -2,9 +2,10 @@ import styled from 'styled-components'
 
 export const CardOfTrip = styled.div`
 width:18em;
-height: 23em;
+height: 16em;
+overflow: auto;
 color:white;
-background-image: url('http://jornal.usp.br/wp-content/uploads/20170911_00_planeta_novo.jpg');
+background: none;
 border-radius: 10px;
 border: 1px solid white;
 margin: 2%;
@@ -14,21 +15,27 @@ align-items: center;
 h1{
     text-transform: uppercase;
     margin-bottom: 0;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
+    margin-top: 5%;
 }
 div{
     margin-top: 0;
-    padding: 1em;
+    padding: 0.5em;
 }
-:hover{
-    background-image: none;
-    color: black;
-    background-color: white;
-    border: 1px solid black;
+p{
+  margin: 1%;
 }
 button{
-  
+    color: white;
+    background: none;
+    font-family: 'engravers MT';
+    padding: 2%;
+    border-radius: 10px 0;
+    :hover, :active{
+        color: black;
+        background-color: white;
+    }
 }
 `
 
@@ -65,15 +72,16 @@ input, button{
 
 export const CandidateCard = styled.section`
 width:90%;
-/* height: 23em; */
+height: 5em;
 color:white;
-background-image: url('http://jornal.usp.br/wp-content/uploads/20170911_00_planeta_novo.jpg');
+overflow: auto;
 border-radius: 10px;
 border: 1px solid white;
 margin: 2%;
 display: flex;
 flex-direction: column;
 align-items: center;
+background-color: black;
 h1{
     text-transform: uppercase;
     margin-bottom: 0;
@@ -84,13 +92,10 @@ div{
     margin-top: 0;
     padding: 1em;
 }
-:hover{
-    background-image: none;
-    color: black;
-    background-color: white;
-    border: 1px solid black;
-}
 button{
-  
+  margin-bottom: 20px;
+}
+p{
+    margin: 2px;
 }
 `

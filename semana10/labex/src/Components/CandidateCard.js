@@ -1,9 +1,9 @@
 import React from 'react'
-import {CandidateCard, ButtonsContainer} from './style'
+import { CandidateCard, ButtonsContainer } from './style'
 
-export default function TripCard(props){
+export default function TripCard(props) {
     return <CandidateCard>
-        <h3>{props.name}</h3>
+        <h2>{props.name}</h2>
         <div>
             <p><b>Idade: </b>{props.age}</p>
             <p><b>País: </b>{props.country}</p>
