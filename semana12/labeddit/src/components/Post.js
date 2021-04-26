@@ -1,24 +1,23 @@
 import React from 'react'
-import { PostCard } from '../style/style'
-import likeIcon from '../images/favorite.svg'
+import { LikesContainer, PostCard } from '../style/style'
 
 export default function Post(props) {
     return (
-        <PostCard>
-            <h2>Nome de usuário</h2>
-            <p>aaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaa aaaaaaa aaaaaaaaaaa aaaaaaaa aaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaa aaaaaa aaaaaaaaaa aaaaaa aaaaaa aaaaaaa aaaaaaa aaaaaaa aaaaaaa aaaaaaa aaaaaaa</p>
+        <PostCard buttonColor={props.deslikeColor}>
+            <h2>{props.userName}</h2>
+            <p>{props.text}</p>
             <section>
-                <>
+                <LikesContainer>
                 <div>
-                    <button><img src={likeIcon} /></button>
-                    <p>2</p>
+                    <button><img src={props.likeIcon} /></button>
+                    <p>{props.numberOfLikes}</p>
                 </div>
                 <div>
-                    <button><p>X</p></button>
-                    <p>2</p>
+                    <button><strong>X</strong></button>
+                    <p>{props.numberOfDeslikes}</p>
                 </div>
-                </>
-                <b>90 comentários</b>
+                </LikesContainer>
+                <b>{props.numberOfComments} comentários</b>
             </section>
         </PostCard>
     )

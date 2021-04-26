@@ -40,14 +40,14 @@ export default function LoginPage() {
             <LoginAndRegisterForm>
                 <StyledTextField
                     label="Email"
-                    color="primary"
+                    color="secondary"
                     name="email"
                     value={form.email}
                     onChange={handleValues}
                 />
                 <StyledTextField
                     label="Senha"
-                    color="primary"
+                    color="secondary"
                     name="password"
                     value={form.password}
                     onChange={handleValues}

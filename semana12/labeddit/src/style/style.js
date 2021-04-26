@@ -2,9 +2,14 @@ import { TextField } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const LoginAndRegisterContainer = styled.main`
+height: 100vh;
+/* color: white; */
 display: flex;
 flex-direction: column;
 align-items: center;
+/* background-image:url('https://www.ufrgs.br/setorsuinos/wp-content/uploads/2019/07/fundo-azul-degrade-2.jpg'); */
+/* background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1866145-papel-de-parede-de-azul-claro-gradiente-poligono-vetor.jpg'); */
+background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1968194-luz-azul-gradiente-desfoque-fundo-vetor.jpg');
 `
 
 export const LogoContainer = styled.section`
@@ -70,21 +75,24 @@ div{
 `
 
 export const PostCard = styled.div`
-height: 15em;
-width: 18em;
-overflow: auto;
+position: relative;
+max-height: 15em;
+width: 50%;
+overflow-y: auto;
 border: 1.5px solid #2c387e;
 border-radius: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: flex-start;
+@media (max-width: 450px){
+    width: 90%;
+}
 h2{
     background-color: #2c387e;
     color: white;
     height: 2em;
     width: 100%;
-    /* border-radius: 10px 10px 0 0; */
     margin: 0;
     display: flex;
     align-items: center;
@@ -100,27 +108,41 @@ section{
     color: white;
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    div{
+    justify-content: space-between;
+    /* div{
         display: flex;
         align-items: center;
         justify-content: center;
         margin-right: 1em;
-    }
+    } */
     button{
         text-align: center;
         background: none;
         border: none;
-        margin: 0;
+        /* margin-left: 5px; */
+        color: ${props=>props.buttonColor};
         cursor: pointer;
         p{
-            margin-right:0.5em;
-            transform: scale(1.2);
+            margin-left:500px;
+            transform: scale(1.5);
         }
     }
     b{
-        margin-left:2.5em;
+        margin-right:0.5em;
     }
 }
+`
 
+export const LikesContainer = styled.div`
+/* width:40%; */
+display: flex;
+align-items: center;
+justify-content: flex-start;
+margin: 0;
+div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* margin-right: 1em; */
+    }
 `

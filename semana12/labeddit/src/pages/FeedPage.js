@@ -5,6 +5,8 @@ import { goToLogin, goBack } from '../coordinator/Coordinator'
 import { FeedAndPostContainer } from '../style/style'
 import Header from '../components/Header'
 import Post from '../components/Post'
+import likeIconFilled from '../images/favorite.svg'
+import likeIcon from '../images/favorite-white.svg'
 
 export default function FeedPage() {
     const history = useHistory()
@@ -26,7 +28,15 @@ export default function FeedPage() {
                 <Button color="secondary" size="small" variant="contained" onClick={() => goBack(history)}>Voltar</Button>
                 <Button color="secondary" size="small" variant="contained" onClick={logout}>LogOut</Button>
             </Header>
-            <Post />
+            <Post 
+            userName='Nome do usuário'
+            text=' aaaaaaaaaaaaaa aaaaaaa aaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaa aaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaa aaaaa'
+            numberOfLikes={200}
+            likeIcon={likeIcon}
+            deslikeColor={'white'}
+            numberOfDeslikes={100}
+            numberOfComments={900}
+            />
         </FeedAndPostContainer>
     )
 }
