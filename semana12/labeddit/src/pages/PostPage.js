@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { FeedAndPostContainer, CommentsContainer } from '../style/style'
+import { FeedAndPostContainer, CommentsContainer, CreateCommentField, CreateCommentForm, LoginAndRegisterForm } from '../style/style'
+import {useForm} from '../custom hooks and functions/useForm'
 import Header from '../components/Header'
 import Post from '../components/Post'
 import Comment from '../components/Comment'
+import Button from '@material-ui/core/Button'
 import { goBack } from '../coordinator/Coordinator'
 import likeIconFilled from '../images/favorite.svg'
 import likeIcon from '../images/favorite-white.svg'
@@ -16,6 +18,7 @@ export default function PostPage() {
     const token = window.localStorage.getItem('token')
     const [post, setPost] = useState({})
     const [seeComments, setSeeComments] = useState(false)
+    const [form, setForm, handleValues, resetForm] = useForm({text:''})
 
     useEffect(() => {
         getPostDetails(pathParams.postId)
@@ -106,9 +109,34 @@ export default function PostPage() {
         }
     }
 
+    const createComment = async(e) =>{
+        // e.preventDefault()
+        try{
+            const newComment = {
+                text: form.text
+            }
+            await axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labEddit/posts/${pathParams.postId}/comment`, newComment, {
+                headers:{
+                    Authorization: token
+                }
+            })
+            // let newCommentsInfo = [...post]
+            getPostDetails(pathParams.postId)
+            resetForm()
+        }catch(error){
+            console.log(error.response)
+        }
+    }
+
+    const createCommentIfEnter = (e) =>{
+        if(e.key==='Enter'){
+            createComment()
+        }
+    }
+
     return (
         <FeedAndPostContainer>
-            {console.log(post)}
+            {console.log(post.comments)}
             <Header>
                 <p onClick={() => goBack(history)}>Voltar</p>
                 <p onClick={() => logout(history)}>Log Out</p>
@@ -127,7 +155,18 @@ export default function PostPage() {
             />
             <CommentsContainer>
             {seeComments ?
-            post.comments.map((comment)=>{
+            <>
+            <CreateCommentForm>
+            <CreateCommentField 
+            label="Insira seu comentário"
+            value={form.text}
+            name="text"
+            onChange={handleValues}
+            onKeyDown={createCommentIfEnter}
+            />
+            <Button onClick={createComment} size="small" color="primary" variant="contained">Comentar</Button>
+            </CreateCommentForm>
+            {post.comments.map((comment)=>{
                 return <Comment
                 userName={comment.username}
                 text={comment.text}
@@ -137,7 +176,8 @@ export default function PostPage() {
                 likeIcon={comment.userVoteDirection === 1 ? likeIconFilled : likeIcon}
                 deslikeColor={comment.userVoteDirection === -1 ? 'black' : 'white'}
             />
-            })
+            })}
+            </>
             :
             <div></div>
             }

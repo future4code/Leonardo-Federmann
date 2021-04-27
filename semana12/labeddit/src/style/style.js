@@ -41,6 +41,68 @@ export const StyledTextField = styled(TextField)`
 width: 100%;
 `
 
+export const FeedFormsContainer = styled.section`
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-around;
+flex-wrap: wrap;
+`
+
+export const CreatePostForm = styled.form`
+width: 40%;
+height: 35vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+padding-bottom: 1em;
+h3{
+    font-family: 'Arial Black';
+    color: #2c387e;
+    margin-bottom: 0;
+}
+@media (max-width: 450px){
+    width: 90%;
+}
+`
+
+export const SearchForm = styled.form`
+width: 40%;
+height: 15vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding-bottom: 1em;
+h3{
+    font-family: 'Arial Black';
+    color: #2c387e;
+    margin-bottom: 0;
+}
+@media (max-width: 450px){
+    width: 90%;
+    height: 15vh;
+}
+`
+
+export const CreateCommentForm = styled.div`
+width: 90%; 
+height: 0.5em;
+margin: 2em 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+@media (max-width: 450px){
+    width: 90%;
+}
+`
+
+export const CreateCommentField = styled(TextField)`
+width: 90%;
+`
+
 export const FeedAndPostContainer = styled.main`
 display: flex;
 flex-direction: column;
@@ -55,7 +117,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
-margin-bottom: 10px;
+/* margin-bottom: 10px; */
 color: white;
 background-color: #2c387e;
 h1{
@@ -110,7 +172,7 @@ overflow-y: auto;
 
 export const PostCard = styled.div`
 position: relative;
-margin-bottom: 2em;
+margin-top: 2em;
 /* min-height: 10em; */
 max-height: 18em;
 width: 50%;
@@ -196,27 +258,29 @@ overflow-y: auto;
 width: 100%;
 align-self: right;
 margin-top: 0.5em;
+margin-bottom: 0;
 `
 
 export const CommentsContainer = styled.section`
-width: 100%;
+width: 50%;
 height: 90vh;
 display: flex;
 flex-direction: column;
 align-items: center;
-/* justify-content: center; */
 overflow-y: auto;
+@media (max-width:450px){
+    width: 90%;
+}
 `
 
 export const CommentCard = styled.div`
 position: relative;
-margin-bottom: 2em;
-/* min-height: 10em; */
+margin-top: 1em;
 max-height: 18em;
-width: 50%;
+width: 90%;
 /* overflow-y: auto; */
 border: 1.5px solid #2c387e;
-border-radius: 10px;
+/* border-radius: 10px; */
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -241,23 +305,24 @@ h3{
     text-align: center;
 }
 /* p{
-    width: 90%;
+    margin:0.5em;
 } */
 section{
-    border-radius: 0 0 10px 10px;
+    /* border-radius: 0 0 10px 10px; */
     width: 100%;
-    height: 3em;
-    background-color: #2c387e;
+    margin-top: 0.5em;
+    height: 2em;
+    background-color: #6573c3;
     color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     /* div{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 1em;
-    } */
+        /* margin-right: 1em; */
+    /* } */ 
     button{
         text-align: center;
         background: none;
