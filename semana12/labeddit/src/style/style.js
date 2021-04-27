@@ -45,40 +45,76 @@ export const FeedAndPostContainer = styled.main`
 display: flex;
 flex-direction: column;
 align-items: center;
+position: relative;
+/* overflow-y: auto; */
 `
 export const HeaderContainer = styled.header`
+/* position: sticky; */
 width: 100%;
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: space-between;
 margin-bottom: 10px;
 color: white;
 background-color: #2c387e;
 h1{
-    margin-left: 1em;
+    /* margin-left: 1em; */
     font-family: 'Arial Black';
     font-size: 150%;
 }
 div{
-    margin-right: 1em;
-    width: 15%;
+    /* margin-right: 1em; */
+    height: 5vh;
+    /* width: 15%; */
+    width: 100%;
     display:flex;
     align-items: center;
-    justify-content: space-between;
-    @media (max-width: 450px){
+    justify-content: space-around;
+    /* @media (max-width: 450px){
         width: 45%;
-    }
+    } */
     /* @media (min-width: 450px, max-width: 800px){
         width: 25%;
     } */
 }
+p{
+    font-family: 'Arial';
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    :hover{
+        cursor: pointer;
+        background-color: white;
+        color: #2c387e;
+    }
+}
+`
+
+export const PostsContainer = styled.section`
+width: 100%;
+height: 90vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+/* justify-content: center; */
+overflow-y: auto;
 `
 
 export const PostCard = styled.div`
 position: relative;
-max-height: 15em;
+margin-bottom: 2em;
+/* min-height: 10em; */
+max-height: 18em;
 width: 50%;
-overflow-y: auto;
+/* overflow-y: auto; */
 border: 1.5px solid #2c387e;
 border-radius: 10px;
 display: flex;
@@ -88,20 +124,27 @@ justify-content: flex-start;
 @media (max-width: 450px){
     width: 90%;
 }
-h2{
+strong{
+    width: 100%;
+    text-align: left;
+}
+h3{
+    border-radius: 10px 10px 0 0;
     background-color: #2c387e;
     color: white;
-    height: 2em;
+    height: 4em;
     width: 100%;
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
-p{
+/* p{
     width: 90%;
-}
+} */
 section{
+    border-radius: 0 0 10px 10px;
     width: 100%;
     height: 3em;
     background-color: #2c387e;
@@ -129,6 +172,7 @@ section{
     }
     b{
         margin-right:0.5em;
+        cursor: pointer;
     }
 }
 `
@@ -145,4 +189,90 @@ div{
         justify-content: center;
         /* margin-right: 1em; */
     }
+`
+
+export const Text = styled.p`
+overflow-y: auto;
+width: 100%;
+align-self: right;
+margin-top: 0.5em;
+`
+
+export const CommentsContainer = styled.section`
+width: 100%;
+height: 90vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+/* justify-content: center; */
+overflow-y: auto;
+`
+
+export const CommentCard = styled.div`
+position: relative;
+margin-bottom: 2em;
+/* min-height: 10em; */
+max-height: 18em;
+width: 50%;
+/* overflow-y: auto; */
+border: 1.5px solid #2c387e;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+@media (max-width: 450px){
+    width: 90%;
+}
+strong{
+    width: 100%;
+    text-align: left;
+}
+h3{
+    border-radius: 10px 10px 0 0;
+    background-color: #2c387e;
+    color: white;
+    height: 4em;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* p{
+    width: 90%;
+} */
+section{
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    height: 3em;
+    background-color: #2c387e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1em;
+    } */
+    button{
+        text-align: center;
+        background: none;
+        border: none;
+        /* margin-left: 5px; */
+        color: ${props=>props.buttonColor};
+        cursor: pointer;
+        p{
+            margin-left:500px;
+            transform: scale(1.5);
+        }
+    }
+    b{
+        margin-right:0.5em;
+        cursor: pointer;
+    }
+}
 `

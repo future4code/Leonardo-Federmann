@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { LoginAndRegisterForm, StyledTextField, LoginAndRegisterContainer, LogoContainer } from '../style/style'
 import { goToFeed, goToLogin } from '../coordinator/Coordinator'
-import { useForm } from '../custom hooks/useForm'
+import { useForm } from '../custom hooks and functions/useForm'
 import axios from 'axios'
 
 export default function RegisterPage() {
