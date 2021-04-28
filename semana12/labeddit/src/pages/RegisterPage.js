@@ -17,7 +17,8 @@ export default function RegisterPage() {
         }
     }, [])
 
-    const register = async () => {
+    const register = async (e) => {
+        e.preventDefault()
         const newUser = {
             email: form.email,
             password: form.password,
@@ -37,31 +38,39 @@ export default function RegisterPage() {
             <LogoContainer>
                 <h1>Labeddit</h1>
             </LogoContainer>
-            <LoginAndRegisterForm>
+            <LoginAndRegisterForm onSubmit={register}>
                 <StyledTextField
                     label="Nome de usuário"
-                    color="primary"
+                    color="secondary"
                     name="username"
                     value={form.username}
                     onChange={handleValues}
+                    type="text"
+                    required
+                    inputProps={{pattern: '^.{3,}$', title:'O nome de usuário deve ter no mínimo 3 caracteres.'}}
                 />
                 <StyledTextField
                     label="Email"
-                    color="primary"
+                    color="secondary"
                     name="email"
                     value={form.email}
                     onChange={handleValues}
+                    type="email"
+                    required
                 />
                 <StyledTextField
                     label="Senha"
-                    color="primary"
+                    color="secondary"
                     name="password"
                     value={form.password}
                     onChange={handleValues}
+                    type="password"
+                    required
+                    inputProps={{pattern: '^.{5,}$', title:'A senha deve ter no mínimo 5 caracteres, sendo permitidos espaços e caracteres especiais.'}}
                 />
                 <div>
                     <Button color="primary" variant="contained" onClick={() => goToLogin(history)}>Ir para Login</Button>
-                    <Button color="primary" variant="contained" onClick={register}>Cadastrar</Button>
+                    <Button color="primary" variant="contained" type="submit">Cadastrar</Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>

@@ -1,32 +1,33 @@
-import React, {useEffect} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { LoginAndRegisterForm, StyledTextField, LoginAndRegisterContainer, LogoContainer } from '../style/style'
 import { useForm } from '../custom hooks and functions/useForm'
-import {goToFeed, goToRegister} from '../coordinator/Coordinator'
+import { goToFeed, goToRegister } from '../coordinator/Coordinator'
 
 export default function LoginPage() {
     const history = useHistory()
     const [form, setForm, handleValues] = useForm({ email: '', password: '' })
 
-    useEffect(()=>{
-        if(window.localStorage.getItem('token')){
+    useEffect(() => {
+        if (window.localStorage.getItem('token')) {
             goToFeed(history)
         }
     }, [])
 
-    const login = async() => {
+    const login = async (e) => {
+        e.preventDefault()
         const user = {
             email: form.email,
             password: form.password
         }
-        try{
+        try {
             const loggedUser = await axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labEddit/login`, user)
             window.localStorage.setItem('token', loggedUser.data.token)
             goToFeed(history)
-        }catch(error){
+        } catch (error) {
             console.log(user)
             alert('Usuário ou senha incorreto.')
         }
@@ -37,24 +38,28 @@ export default function LoginPage() {
             <LogoContainer>
                 <h1>Labeddit</h1>
             </LogoContainer>
-            <LoginAndRegisterForm>
+            <LoginAndRegisterForm onSubmit={login}>
                 <StyledTextField
                     label="Email"
-                    color="primary"
+                    color="secondary"
                     name="email"
                     value={form.email}
                     onChange={handleValues}
+                    type="email"
+                    required
                 />
                 <StyledTextField
                     label="Senha"
-                    color="primary"
+                    color="secondary"
                     name="password"
                     value={form.password}
                     onChange={handleValues}
+                    type="password"
+                    required
                 />
                 <div>
-                    <Button color="primary" variant="contained" onClick={()=>goToRegister(history)}>Cadastre-se</Button>
-                    <Button color="primary" variant="contained" onClick={login}>Login</Button>
+                    <Button color="primary" variant="contained" onClick={() => goToRegister(history)}>Cadastre-se</Button>
+                    <Button color="primary" variant="contained" type="submit">Login</Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>

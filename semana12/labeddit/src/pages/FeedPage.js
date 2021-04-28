@@ -8,6 +8,7 @@ import logout from '../custom hooks and functions/logout'
 import { FeedAndPostContainer, PostsContainer, CreatePostForm, SearchForm, StyledTextField, FeedFormsContainer } from '../style/style'
 import Header from '../components/Header'
 import Post from '../components/Post'
+import Loading from '../components/Loading'
 import likeIconFilled from '../images/favorite.svg'
 import likeIcon from '../images/favorite-white.svg'
 
@@ -83,7 +84,7 @@ export default function FeedPage() {
     }
 
     const createPost = async (e) => {
-        console.log('entrou na função')
+        e.preventDefault()
         const newPost = {
             text: form.text,
             title: form.title
@@ -108,14 +109,14 @@ export default function FeedPage() {
 
     const searchPost = () => {
         console.log(renderedPosts)
-            if (form.search) {
-                let newPostsList = posts.filter((post) => {
-                    return (post.title.toLowerCase().includes(form.search.toLowerCase()) || post.username.toLowerCase().includes(form.search.toLowerCase()) || post.text.toLowerCase().includes(form.search.toLowerCase()))
-                })
-                setRenderedPosts(newPostsList)
-            } else {
-                setRenderedPosts(posts)
-            }
+        if (form.search) {
+            let newPostsList = posts.filter((post) => {
+                return (post.title.toLowerCase().includes(form.search.toLowerCase()) || post.username.toLowerCase().includes(form.search.toLowerCase()) || post.text.toLowerCase().includes(form.search.toLowerCase()))
+            })
+            setRenderedPosts(newPostsList)
+        } else {
+            setRenderedPosts(posts)
+        }
     }
 
     return (
@@ -124,49 +125,59 @@ export default function FeedPage() {
                 <p onClick={() => goBack(history)}>Voltar</p>
                 <p onClick={() => logout(history)}>Log Out</p>
             </Header>
-            <FeedFormsContainer>
-                <CreatePostForm>
-                    <h3>Crie seu post!</h3>
-                    <StyledTextField
-                        label="Título"
-                        value={form.title}
-                        name="title"
-                        onChange={handleValues}
-                    />
-                    <StyledTextField
-                        label="Texto do post"
-                        value={form.text}
-                        name="text"
-                        onChange={handleValues}
-                    />
-                    <Button onClick={createPost} color="primary" variant="contained">Criar post</Button>
-                </CreatePostForm>
-                <SearchForm>
-                    <h3>Busque um post</h3>
-                    <StyledTextField
-                        label="Buscar..."
-                        value={form.search}
-                        name="search"
-                        onChange={doubleOnChange}
-                    />
-                </SearchForm>
-            </FeedFormsContainer>
-            <PostsContainer>
-                {renderedPosts.map((post) => {
-                    return <Post
-                        title={post.title}
-                        userName={post.username}
-                        text={post.text}
-                        positiveVote={() => vote(post.id, post.userVoteDirection, 1)}
-                        negativeVote={() => vote(post.id, post.userVoteDirection, -1)}
-                        numberOfPositiveVotes={post.votesCount}
-                        likeIcon={post.userVoteDirection === 1 ? likeIconFilled : likeIcon}
-                        deslikeColor={post.userVoteDirection === -1 ? 'black' : 'white'}
-                        numberOfComments={post.commentsCount}
-                        checkDetails={() => goToPostPage(history, post.id)}
-                    />
-                })}
-            </PostsContainer>
+            {!posts[1] ?
+                <Loading /> :
+                <>
+                    <FeedFormsContainer>
+                        <CreatePostForm onSubmit={createPost}>
+                            <h3>Crie seu post!</h3>
+                            <StyledTextField
+                                label="Título"
+                                value={form.title}
+                                name="title"
+                                onChange={handleValues}
+                                type="text"
+                                required
+                                inputProps={{pattern:'^.{1,100}$', title:'O título deve ter no máximo 100 caracteres.'}}
+                            />
+                            <StyledTextField
+                                label="Texto do post"
+                                value={form.text}
+                                name="text"
+                                onChange={handleValues}
+                                type="text"
+                                required
+                            />
+                            <Button type="submit" color="primary" variant="contained">Criar post</Button>
+                        </CreatePostForm>
+                        <SearchForm>
+                            <h3>Busque um post</h3>
+                            <StyledTextField
+                                label="Buscar..."
+                                value={form.search}
+                                name="search"
+                                onChange={doubleOnChange}
+                            />
+                        </SearchForm>
+                    </FeedFormsContainer>
+                    <PostsContainer>
+                        {renderedPosts.map((post) => {
+                            return <Post
+                                title={post.title}
+                                userName={post.username}
+                                text={post.text}
+                                positiveVote={() => vote(post.id, post.userVoteDirection, 1)}
+                                negativeVote={() => vote(post.id, post.userVoteDirection, -1)}
+                                numberOfPositiveVotes={post.votesCount}
+                                likeIcon={post.userVoteDirection === 1 ? likeIconFilled : likeIcon}
+                                deslikeColor={post.userVoteDirection === -1 ? 'black' : 'white'}
+                                numberOfComments={post.commentsCount}
+                                checkDetails={() => goToPostPage(history, post.id)}
+                            />
+                        })}
+                    </PostsContainer>
+                </>
+            }
         </FeedAndPostContainer>
     )
 }

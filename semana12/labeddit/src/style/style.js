@@ -8,8 +8,8 @@ display: flex;
 flex-direction: column;
 align-items: center;
 /* background-image:url('https://www.ufrgs.br/setorsuinos/wp-content/uploads/2019/07/fundo-azul-degrade-2.jpg'); */
-/* background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1866145-papel-de-parede-de-azul-claro-gradiente-poligono-vetor.jpg'); */
-background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1968194-luz-azul-gradiente-desfoque-fundo-vetor.jpg');
+background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1866145-papel-de-parede-de-azul-claro-gradiente-poligono-vetor.jpg');
+/* background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1968194-luz-azul-gradiente-desfoque-fundo-vetor.jpg'); */
 `
 
 export const LogoContainer = styled.section`
@@ -87,7 +87,7 @@ h3{
 }
 `
 
-export const CreateCommentForm = styled.div`
+export const CreateCommentForm = styled.form`
 width: 90%; 
 height: 0.5em;
 margin: 2em 0;
@@ -340,4 +340,19 @@ section{
         cursor: pointer;
     }
 }
+`
+
+export const LoadingContainer = styled.div`
+border: 20px solid #dfe3ee;
+border-radius: 50%;
+border-top-color: #2c387e;
+width: 50px;
+height: 50px;
+margin-top: 60px;
+@keyframes rotation{
+    to{
+        transform: rotate(360deg);
+    }
+}
+animation: rotation 3s linear infinite;
 `
