@@ -372,7 +372,7 @@ animation: rotation 3s linear infinite;
 `
 
 export const Menu = styled.section`
-width: 300px;
+width: 200px;
 height: 100%;
 display: flex;
 flex-direction: column;

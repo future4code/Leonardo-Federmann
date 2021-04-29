@@ -46,17 +46,17 @@ export default function RegisterPage() {
             </LogoContainer>
             <LoginAndRegisterForm onSubmit={register}>
                 <StyledTextField
-                    label="Nome de usuário"
+                    label={languages[language].username}
                     color="secondary"
                     name="username"
                     value={form.username}
                     onChange={handleValues}
                     type="text"
                     required
-                    inputProps={{pattern: '^.{3,}$', title:'O nome de usuário deve ter no mínimo 3 caracteres.'}}
+                    inputProps={{pattern: '^.{3,}$', title: languages[language].usernamePattern}}
                 />
                 <StyledTextField
-                    label="Email"
+                    label={languages[language].email}
                     color="secondary"
                     name="email"
                     value={form.email}
@@ -65,19 +65,19 @@ export default function RegisterPage() {
                     required
                 />
                 <StyledTextField
-                    label="Senha"
+                    label={languages[language].password}
                     color="secondary"
                     name="password"
                     value={form.password}
                     onChange={handleValues}
                     type="password"
                     required
-                    inputProps={{pattern: '^.{5,}$', title:'A senha deve ter no mínimo 5 caracteres, sendo permitidos espaços e caracteres especiais.'}}
+                    inputProps={{pattern: '^.{5,}$', title:languages[language].passwordPattern}}
                 />
                 <div>
-                    <Button color="primary" variant="contained" type="submit">Cadastrar</Button>
+                    <Button color="primary" variant="contained" type="submit">{languages[language].register}</Button>
                     <Button color="primary" variant="contained" onClick={() => setMenu(true)}>{languages[language].changeLanguage}</Button>
-                    <Button color="primary" variant="contained" onClick={() => goToLogin(history)}>Ir para Login</Button>
+                    <Button color="primary" variant="contained" onClick={() => goToLogin(history)}>{languages[language].goToLogin}</Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>

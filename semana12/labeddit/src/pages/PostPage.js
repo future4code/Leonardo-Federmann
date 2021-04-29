@@ -74,7 +74,7 @@ export default function PostPage() {
             setPost(newPostInfo)
         } catch (error) {
             console.log(error)
-            alert('Ocorreu um erro no sistema e estamos trabalhando para corrigi-lo. Por favor, tente novamente mais tarde.')
+            alert(languages[language].errorMessage)
         }
     }
 
@@ -111,7 +111,7 @@ export default function PostPage() {
             })
             setPost({ ...post, comments: newCommentsInfo })
         } catch (error) {
-            alert('Ocorreu um erro no sistema e estamos trabalhando para corrigi-lo. Por favor, tente novamente mais tarde.')
+            alert(languages[language].errorMessage)
         }
     }
 
@@ -129,13 +129,7 @@ export default function PostPage() {
             getPostDetails(pathParams.postId)
             resetForm()
         } catch (error) {
-            console.log(error.response)
-        }
-    }
-
-    const createCommentIfEnter = (e) => {
-        if (e.key === 'Enter') {
-            createComment()
+            alert(languages[language].errorMessage)
         }
     }
 
@@ -143,9 +137,9 @@ export default function PostPage() {
         <FeedAndPostContainer>
             <LanguagesMenu />
             <Header>
-                <p onClick={() => goBack(history)}>Voltar</p>
+                <p onClick={() => goBack(history)}>{languages[language].goBack}</p>
                 <p onClick={() => setMenu(true)}>{languages[language].changeLanguage}</p>
-                <p onClick={() => logout(history)}>Log Out</p>
+                <p onClick={() => logout(history)}>{languages[language].logout}</p>
             </Header>
             { !post.title ?
                 <Loading /> :
@@ -167,15 +161,14 @@ export default function PostPage() {
                             <>
                                 <CreateCommentForm onSubmit={createComment}>
                                     <CreateCommentField
-                                        label="Insira seu comentário"
+                                        label={languages[language].commentFieldLabel}
                                         value={form.text}
                                         name="text"
                                         onChange={handleValues}
-                                        onKeyDown={createCommentIfEnter}
                                         type="text"
                                         required
                                     />
-                                    <Button type="submit" size="small" color="primary" variant="contained">Comentar</Button>
+                                    <Button type="submit" size="small" color="primary" variant="contained">{languages[language].commentButton}</Button>
                                 </CreateCommentForm>
                                 {post.comments.map((comment) => {
                                     return <Comment

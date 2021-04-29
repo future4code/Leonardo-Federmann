@@ -46,7 +46,7 @@ export default function LoginPage() {
             </LogoContainer>
             <LoginAndRegisterForm onSubmit={login}>
                 <StyledTextField
-                    label="Email"
+                    label={languages[language].email}
                     color="secondary"
                     name="email"
                     value={form.email}
@@ -55,7 +55,7 @@ export default function LoginPage() {
                     required
                 />
                 <StyledTextField
-                    label="Senha"
+                    label={languages[language].password}
                     color="secondary"
                     name="password"
                     value={form.password}
@@ -64,9 +64,9 @@ export default function LoginPage() {
                     required
                 />
                 <div>
-                    <Button color="primary" variant="contained" type="submit">Login</Button>
+                    <Button color="primary" variant="contained" type="submit">{languages[language].login}</Button>
                     <Button color="primary" variant="contained" onClick={() => setMenu(true)}>{languages[language].changeLanguage}</Button>
-                    <Button color="primary" variant="contained" onClick={() => goToRegister(history)}>Cadastre-se</Button>
+                    <Button color="primary" variant="contained" onClick={() => goToRegister(history)}>{languages[language].goToRegister}</Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>

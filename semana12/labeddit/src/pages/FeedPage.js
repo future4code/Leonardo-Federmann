@@ -88,7 +88,7 @@ export default function FeedPage() {
             })
             setPosts(newPostsInfo)
         } catch (error) {
-            alert('Ocorreu um erro no sistema e estamos trabalhando para corrigi-lo. Por favor, tente novamente mais tarde.')
+            alert(languages[language].errorMessage)
         }
     }
 
@@ -132,39 +132,39 @@ export default function FeedPage() {
         <FeedAndPostContainer>
             <LanguagesMenu />
             <Header>
-                <p onClick={() => goBack(history)}>Voltar</p>
+                <p onClick={() => goBack(history)}>{languages[language].goBack}</p>
                 <p onClick={() => setMenu(true)}>{languages[language].changeLanguage}</p>
-                <p onClick={() => logout(history)}>Log Out</p>
+                <p onClick={() => logout(history)}>{languages[language].logout}</p>
             </Header>
             {!posts[0] ?
                 <Loading /> :
                 <>
                     <FeedFormsContainer>
                         <CreatePostForm onSubmit={createPost}>
-                            <h3>Crie seu post!</h3>
+                            <h3>{languages[language].createYourPost}</h3>
                             <StyledTextField
-                                label="Título"
+                                label={languages[language].title}
                                 value={form.title}
                                 name="title"
                                 onChange={handleValues}
                                 type="text"
                                 required
-                                inputProps={{ pattern: '^.{1,100}$', title: 'O título deve ter no máximo 100 caracteres.' }}
+                                inputProps={{ pattern: '^.{1,100}$', title: languages[language].titlePattern }}
                             />
                             <StyledTextField
-                                label="Texto do post"
+                                label={languages[language].postText}
                                 value={form.text}
                                 name="text"
                                 onChange={handleValues}
                                 type="text"
                                 required
                             />
-                            <Button type="submit" color="primary" variant="contained">Criar post</Button>
+                            <Button type="submit" color="primary" variant="contained">{languages[language].createPost}</Button>
                         </CreatePostForm>
                         <SearchForm>
-                            <h3>Busque um post</h3>
+                            <h3>{languages[language].searchAPost}</h3>
                             <StyledTextField
-                                label="Buscar..."
+                                label={languages[language].search}
                                 value={form.search}
                                 name="search"
                                 onChange={handleValues}
@@ -174,7 +174,7 @@ export default function FeedPage() {
                     </FeedFormsContainer>
                     <PostsContainer>
                         { !renderedPosts[0] ? 
-                        <h3>Não há correspondências com o valor buscado.</h3> :
+                        <h3>{languages[language].searchCorrespondence}</h3> :
                         <>
                         {renderedPosts.map((post) => {
                             return <Post
