@@ -95,6 +95,21 @@ justify-content: space-around;
 flex-wrap: wrap;
 `
 
+export const ShowAndHideButtonContainer = styled.div`
+width:30%;
+height: 5em;
+display: flex;
+flex-direction: column;
+justify-content: center;
+@media (max-width: 450px){
+    width: 90%;
+}
+`
+
+export const ShowAndHideButton = styled(Button)`
+width:100%;
+`
+
 export const CreatePostForm = styled.form`
 width: 40%;
 height: 35vh;

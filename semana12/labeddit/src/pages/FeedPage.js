@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { goToLogin, goBack, goToPostPage } from '../coordinator/Coordinator'
 import { useForm } from '../custom hooks and functions/useForm'
 import logout from '../custom hooks and functions/logout'
-import { FeedAndPostContainer, PostsContainer, CreatePostForm, SearchForm, StyledTextField, FeedFormsContainer } from '../style/style'
+import { FeedAndPostContainer, PostsContainer, CreatePostForm, SearchForm, StyledTextField, FeedFormsContainer, ShowAndHideButton, ShowAndHideButtonContainer } from '../style/style'
 
 import Header from '../components/Header'
 import Post from '../components/Post'
@@ -22,6 +22,7 @@ export default function FeedPage() {
     const token = window.localStorage.getItem('token')
     const [posts, setPosts] = useState([])
     const [renderedPosts, setRenderedPosts] = useState([])
+    const [showFields, setShowFields] = useState(false)
     const [form, setForm, handleValues, resetForm] = useForm({ title: '', text: '', search: '' })
     const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
 
@@ -134,7 +135,11 @@ export default function FeedPage() {
             </Header>
             {!posts[0] ?
                 <Loading /> :
-                <>
+                <>  <ShowAndHideButtonContainer>
+                    <ShowAndHideButton onClick={()=>setShowFields(!showFields)} color="primary" variant="contained">{showFields ? languages[language].hide : languages[language].show} {languages[language].fieldToShowOrHide}</ShowAndHideButton>
+                </ShowAndHideButtonContainer>
+                    { !showFields ?
+                    <div></div> :
                     <FeedFormsContainer>
                         <CreatePostForm onSubmit={createPost}>
                             <h3>{languages[language].createYourPost}</h3>
@@ -168,6 +173,7 @@ export default function FeedPage() {
                             />
                         </SearchForm>
                     </FeedFormsContainer>
+                    }
                     <PostsContainer>
                         { !renderedPosts[0] ? 
                         <h3>{languages[language].searchCorrespondence}</h3> :

@@ -29,6 +29,9 @@ export const languages = {
         errorPageTitle: 'Ops! Esse link não existe.',
         errorPageText: 'Parece que o link digitado não existe, mas você ainda pode ir para a nossa home! Lá você encontrará todas as orientações necessárias.',
         goToHome: 'Ir para home',
+        show: 'Exibir',
+        hide: 'Ocultar',
+        fieldToShowOrHide: 'campos de busca e criação de post',
     }, 
     en:{
         email: 'E-mail',
@@ -60,6 +63,9 @@ export const languages = {
         errorPageTitle: `Ops! This link doesn't exist.`,
         errorPageText: `Looks like the link you typed doesn't exist. However, you may go to our home page! There you'll find all the orientation you need.`,
         goToHome: 'Home page',
+        show: 'Show',
+        hide: 'Hide',
+        fieldToShowOrHide: 'search and post creation fields.',
     },
     es:{
         email: 'Correo Electrónico',
@@ -91,5 +97,8 @@ export const languages = {
         errorPageTitle: 'Ops! Este link no existe.',
         errorPageText: 'Parece que el link introducido no existe. Sin embargo, todavía puedes ir a nuestra página de inicio, en la cual encontrarás todas las orientaciones que necesitas.',
         goToHome: 'Página de inicio',
+        show: 'Mostrar',
+        hide: 'Ocultar',
+        fieldToShowOrHide: 'campos de búsqueda y creación de publicación',
     }
 }
