@@ -1,5 +1,7 @@
 import { TextField } from '@material-ui/core'
 import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
+import Drawer from '@material-ui/core/Drawer'
 
 export const LoginAndRegisterContainer = styled.main`
 height: 100vh;
@@ -34,6 +36,13 @@ div{
 }
 @media (max-width: 800px){
     width: 80%;
+    div{
+        flex-direction: column;
+        align-items: center;
+    }
+    Button{
+        margin-bottom: 2em;
+    }
 }
 `
 
@@ -168,6 +177,11 @@ flex-direction: column;
 align-items: center;
 /* justify-content: center; */
 overflow-y: auto;
+h3{
+    font-family: 'Arial Black';
+    color: #2c387e;
+    margin-bottom: 0;
+}
 `
 
 export const PostCard = styled.div`
@@ -225,7 +239,7 @@ section{
         background: none;
         border: none;
         /* margin-left: 5px; */
-        color: ${props=>props.buttonColor};
+        color: ${props => props.buttonColor};
         cursor: pointer;
         p{
             margin-left:500px;
@@ -328,7 +342,7 @@ section{
         background: none;
         border: none;
         /* margin-left: 5px; */
-        color: ${props=>props.buttonColor};
+        color: ${props => props.buttonColor};
         cursor: pointer;
         p{
             margin-left:500px;
@@ -355,4 +369,17 @@ margin-top: 60px;
     }
 }
 animation: rotation 3s linear infinite;
+`
+
+export const Menu = styled.section`
+width: 300px;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+background-color: #6573c3;
+Button{
+    margin: 1em;
+}
 `

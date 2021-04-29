@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField'
@@ -6,10 +6,15 @@ import Button from '@material-ui/core/Button'
 import { LoginAndRegisterForm, StyledTextField, LoginAndRegisterContainer, LogoContainer } from '../style/style'
 import { useForm } from '../custom hooks and functions/useForm'
 import { goToFeed, goToRegister } from '../coordinator/Coordinator'
+import {useLanguages} from '../custom hooks and functions/useLanguages'
+import LanguagesMenu from '../components/LanguagesMenu'
+import {languages} from '../languages/languages'
+import {LanguageContext} from '../globalContext/LanguageContext'
 
 export default function LoginPage() {
     const history = useHistory()
     const [form, setForm, handleValues] = useForm({ email: '', password: '' })
+    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
 
     useEffect(() => {
         if (window.localStorage.getItem('token')) {
@@ -35,6 +40,7 @@ export default function LoginPage() {
 
     return (
         <LoginAndRegisterContainer>
+            <LanguagesMenu />
             <LogoContainer>
                 <h1>Labeddit</h1>
             </LogoContainer>
@@ -58,8 +64,9 @@ export default function LoginPage() {
                     required
                 />
                 <div>
-                    <Button color="primary" variant="contained" onClick={() => goToRegister(history)}>Cadastre-se</Button>
                     <Button color="primary" variant="contained" type="submit">Login</Button>
+                    <Button color="primary" variant="contained" onClick={() => setMenu(true)}>{languages[language].changeLanguage}</Button>
+                    <Button color="primary" variant="contained" onClick={() => goToRegister(history)}>Cadastre-se</Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>

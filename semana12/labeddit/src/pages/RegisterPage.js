@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -6,10 +6,15 @@ import { LoginAndRegisterForm, StyledTextField, LoginAndRegisterContainer, LogoC
 import { goToFeed, goToLogin } from '../coordinator/Coordinator'
 import { useForm } from '../custom hooks and functions/useForm'
 import axios from 'axios'
+import {useLanguages} from '../custom hooks and functions/useLanguages'
+import LanguagesMenu from '../components/LanguagesMenu'
+import {languages} from '../languages/languages'
+import {LanguageContext} from '../globalContext/LanguageContext'
 
 export default function RegisterPage() {
     const history = useHistory()
     const [form, setForm, handleValues] = useForm({ username: '', email: '', password: '' })
+    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
 
     useEffect(() => {
         if (window.localStorage.getItem('token')) {
@@ -35,6 +40,7 @@ export default function RegisterPage() {
 
     return (
         <LoginAndRegisterContainer>
+            <LanguagesMenu />
             <LogoContainer>
                 <h1>Labeddit</h1>
             </LogoContainer>
@@ -69,8 +75,9 @@ export default function RegisterPage() {
                     inputProps={{pattern: '^.{5,}$', title:'A senha deve ter no mínimo 5 caracteres, sendo permitidos espaços e caracteres especiais.'}}
                 />
                 <div>
-                    <Button color="primary" variant="contained" onClick={() => goToLogin(history)}>Ir para Login</Button>
                     <Button color="primary" variant="contained" type="submit">Cadastrar</Button>
+                    <Button color="primary" variant="contained" onClick={() => setMenu(true)}>{languages[language].changeLanguage}</Button>
+                    <Button color="primary" variant="contained" onClick={() => goToLogin(history)}>Ir para Login</Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>

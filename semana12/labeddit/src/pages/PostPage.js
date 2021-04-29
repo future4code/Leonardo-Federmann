@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { FeedAndPostContainer, CommentsContainer, CreateCommentField, CreateCommentForm, LoginAndRegisterForm } from '../style/style'
@@ -12,6 +12,10 @@ import { goBack } from '../coordinator/Coordinator'
 import likeIconFilled from '../images/favorite.svg'
 import likeIcon from '../images/favorite-white.svg'
 import logout from '../custom hooks and functions/logout'
+import {useLanguages} from '../custom hooks and functions/useLanguages'
+import LanguagesMenu from '../components/LanguagesMenu'
+import {languages} from '../languages/languages'
+import {LanguageContext} from '../globalContext/LanguageContext'
 
 export default function PostPage() {
     const history = useHistory()
@@ -20,6 +24,7 @@ export default function PostPage() {
     const [post, setPost] = useState({})
     const [seeComments, setSeeComments] = useState(false)
     const [form, setForm, handleValues, resetForm] = useForm({ text: '' })
+    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
 
     useEffect(() => {
         getPostDetails(pathParams.postId)
@@ -121,7 +126,6 @@ export default function PostPage() {
                     Authorization: token
                 }
             })
-            // let newCommentsInfo = [...post]
             getPostDetails(pathParams.postId)
             resetForm()
         } catch (error) {
@@ -137,8 +141,10 @@ export default function PostPage() {
 
     return (
         <FeedAndPostContainer>
+            <LanguagesMenu />
             <Header>
                 <p onClick={() => goBack(history)}>Voltar</p>
+                <p onClick={() => setMenu(true)}>{languages[language].changeLanguage}</p>
                 <p onClick={() => logout(history)}>Log Out</p>
             </Header>
             { !post.title ?

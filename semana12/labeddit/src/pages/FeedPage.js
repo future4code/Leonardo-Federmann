@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
@@ -9,6 +9,10 @@ import { FeedAndPostContainer, PostsContainer, CreatePostForm, SearchForm, Style
 import Header from '../components/Header'
 import Post from '../components/Post'
 import Loading from '../components/Loading'
+import {useLanguages} from '../custom hooks and functions/useLanguages'
+import LanguagesMenu from '../components/LanguagesMenu'
+import {languages} from '../languages/languages'
+import {LanguageContext} from '../globalContext/LanguageContext'
 import likeIconFilled from '../images/favorite.svg'
 import likeIcon from '../images/favorite-white.svg'
 
@@ -18,6 +22,7 @@ export default function FeedPage() {
     const [posts, setPosts] = useState([])
     const [renderedPosts, setRenderedPosts] = useState([])
     const [form, setForm, handleValues, resetForm] = useForm({ title: '', text: '', search: '' })
+    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
 
     useEffect(() => {
         if (!window.localStorage.getItem('token')) {
@@ -32,6 +37,10 @@ export default function FeedPage() {
     useEffect(() => {
         setRenderedPosts(posts)
     }, [posts])
+
+    useEffect(() => {
+        searchPost()
+    }, [form.search])
 
     const getPosts = async () => {
         try {
@@ -108,7 +117,7 @@ export default function FeedPage() {
     }
 
     const searchPost = () => {
-        console.log(renderedPosts)
+        console.log(form.search)
         if (form.search) {
             let newPostsList = posts.filter((post) => {
                 return (post.title.toLowerCase().includes(form.search.toLowerCase()) || post.username.toLowerCase().includes(form.search.toLowerCase()) || post.text.toLowerCase().includes(form.search.toLowerCase()))
@@ -121,11 +130,13 @@ export default function FeedPage() {
 
     return (
         <FeedAndPostContainer>
+            <LanguagesMenu />
             <Header>
                 <p onClick={() => goBack(history)}>Voltar</p>
+                <p onClick={() => setMenu(true)}>{languages[language].changeLanguage}</p>
                 <p onClick={() => logout(history)}>Log Out</p>
             </Header>
-            {!posts[1] ?
+            {!posts[0] ?
                 <Loading /> :
                 <>
                     <FeedFormsContainer>
@@ -138,7 +149,7 @@ export default function FeedPage() {
                                 onChange={handleValues}
                                 type="text"
                                 required
-                                inputProps={{pattern:'^.{1,100}$', title:'O título deve ter no máximo 100 caracteres.'}}
+                                inputProps={{ pattern: '^.{1,100}$', title: 'O título deve ter no máximo 100 caracteres.' }}
                             />
                             <StyledTextField
                                 label="Texto do post"
@@ -156,11 +167,15 @@ export default function FeedPage() {
                                 label="Buscar..."
                                 value={form.search}
                                 name="search"
-                                onChange={doubleOnChange}
+                                onChange={handleValues}
+                                type="text"
                             />
                         </SearchForm>
                     </FeedFormsContainer>
                     <PostsContainer>
+                        { !renderedPosts[0] ? 
+                        <h3>Não há correspondências com o valor buscado.</h3> :
+                        <>
                         {renderedPosts.map((post) => {
                             return <Post
                                 title={post.title}
@@ -175,6 +190,7 @@ export default function FeedPage() {
                                 checkDetails={() => goToPostPage(history, post.id)}
                             />
                         })}
+                        </>}
                     </PostsContainer>
                 </>
             }
