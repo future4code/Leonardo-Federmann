@@ -9,15 +9,50 @@ height: 100vh;
 display: flex;
 flex-direction: column;
 align-items: center;
-/* background-image:url('https://www.ufrgs.br/setorsuinos/wp-content/uploads/2019/07/fundo-azul-degrade-2.jpg'); */
 background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1866145-papel-de-parede-de-azul-claro-gradiente-poligono-vetor.jpg');
-/* background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1968194-luz-azul-gradiente-desfoque-fundo-vetor.jpg'); */
+
+`
+
+export const ErrorContainer = styled.main`
+height: 100vh;
+/* color: white; */
+display: flex;
+flex-direction: column;
+align-items: center;
+font-family: 'Arial';
+background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1866145-papel-de-parede-de-azul-claro-gradiente-poligono-vetor.jpg');
+@keyframes entrance{
+    0%{
+        transform: translatey(10px);
+    }   
+}
+h1{
+    font-family: 'Arial Black';
+    font-size: 125%;
+    animation: entrance 1s;
+}
+p{
+    font-family: 'Arial';
+    font-size: 20px;
+    width: 80%;
+    text-align: center;
+    animation: entrance 1s;
+}
+div{
+    display:flex;
+    align-item: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 20em;
+    animation: entrance 1s;
+}
 `
 
 export const LogoContainer = styled.section`
 height: 10vh;
 font-family: 'Arial Black';
 font-size: 150%;
+animation: entrance 1s;
 `
 
 export const LoginAndRegisterForm = styled.form`
@@ -28,6 +63,7 @@ flex-direction: column;
 align-items: center;
 justify-content: flex-start;
 height: 40vh;
+animation: entrance 1s;
 div{
     margin: 1em;
     width: 100%;
@@ -109,7 +145,7 @@ align-items: center;
 `
 
 export const CreateCommentField = styled(TextField)`
-width: 90%;
+width: 95%;
 `
 
 export const FeedAndPostContainer = styled.main`
@@ -291,7 +327,7 @@ export const CommentCard = styled.div`
 position: relative;
 margin-top: 1em;
 max-height: 18em;
-width: 90%;
+width: 95%;
 /* overflow-y: auto; */
 border: 1.5px solid #2c387e;
 /* border-radius: 10px; */

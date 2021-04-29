@@ -25,6 +25,9 @@ export const languages = {
         commentFieldLabel: 'Insira um comentário',
         commentButton: 'comentar',
         changeLanguage: 'Definir idioma',
+        errorPageTitle: 'Ops! Esse link não existe.',
+        errorPageText: 'Parece que o link digitado não existe, mas você ainda pode ir para a nossa home! Lá você encontrará todas as orientações necessárias.',
+        goToHome: 'Ir para home',
     }, 
     en:{
         email: 'E-mail',
@@ -52,6 +55,9 @@ export const languages = {
         commentFieldLabel: 'Enter your comment',
         commentButton: 'comment',
         changeLanguage: 'Set language',
+        errorPageTitle: `Ops! This link doesn't exist.`,
+        errorPageText: `Looks like the link you typed doesn't exist. However, you may go to our home page! There you'll find all the orientation you need.`,
+        goToHome: 'Home page',
     },
     es:{
         email: 'Correo Electrónico',
@@ -79,5 +85,8 @@ export const languages = {
         commentFieldLabel: 'Ingresa un comentario',
         commentButton: 'comentar',
         changeLanguage: 'Definir idioma',
+        errorPageTitle: 'Ops! Este link no existe.',
+        errorPageText: 'Parece que el link introducido no existe. Sin embargo, todavía puedes ir a nuestra página de inicio, en la cual encontrarás todas las orientaciones que necesitas.',
+        goToHome: 'Página de inicio',
     }
 }

@@ -6,6 +6,7 @@ import { goToLogin, goBack, goToPostPage } from '../coordinator/Coordinator'
 import { useForm } from '../custom hooks and functions/useForm'
 import logout from '../custom hooks and functions/logout'
 import { FeedAndPostContainer, PostsContainer, CreatePostForm, SearchForm, StyledTextField, FeedFormsContainer } from '../style/style'
+
 import Header from '../components/Header'
 import Post from '../components/Post'
 import Loading from '../components/Loading'
@@ -109,11 +110,6 @@ export default function FeedPage() {
         } catch (error) {
             console.log(error.response)
         }
-    }
-
-    const doubleOnChange = (e) => {
-        handleValues(e)
-        searchPost()
     }
 
     const searchPost = () => {
