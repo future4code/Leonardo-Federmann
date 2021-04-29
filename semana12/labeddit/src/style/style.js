@@ -223,7 +223,6 @@ p{
 export const PostsContainer = styled.section`
 width: 100%;
 height: 90vh;
-text-align: center;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -234,6 +233,7 @@ h3{
     color: #2c387e;
     margin-bottom: 0;
     width: 90%;
+    text-align: center;
 }
 `
 
