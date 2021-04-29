@@ -52,6 +52,11 @@ export const LogoContainer = styled.section`
 height: 10vh;
 font-family: 'Arial Black';
 font-size: 150%;
+@keyframes entrance{
+    0%{
+        transform: translatey(10px);
+    }   
+}
 animation: entrance 1s;
 `
 
@@ -63,6 +68,11 @@ flex-direction: column;
 align-items: center;
 justify-content: flex-start;
 height: 40vh;
+@keyframes entrance{
+    0%{
+        transform: translatey(10px);
+    }   
+}
 animation: entrance 1s;
 div{
     margin: 1em;
