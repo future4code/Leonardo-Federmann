@@ -34,7 +34,7 @@ export default function LoginPage() {
             goToFeed(history)
         } catch (error) {
             console.log(user)
-            alert('Usuário ou senha incorreto.')
+            alert(languages[language].errorMessageLogin)
         }
     }
 
