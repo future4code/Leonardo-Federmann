@@ -6,14 +6,12 @@ import { goToLogin, goBack, goToPostPage } from '../coordinator/Coordinator'
 import { useForm } from '../custom hooks and functions/useForm'
 import logout from '../custom hooks and functions/logout'
 import { FeedAndPostContainer, PostsContainer, CreatePostForm, SearchForm, StyledTextField, FeedFormsContainer, ShowAndHideButton, ShowAndHideButtonContainer } from '../style/style'
-
 import Header from '../components/Header'
 import Post from '../components/Post'
 import Loading from '../components/Loading'
-import {useLanguages} from '../custom hooks and functions/useLanguages'
 import LanguagesMenu from '../components/LanguagesMenu'
-import {languages} from '../languages/languages'
-import {LanguageContext} from '../globalContext/LanguageContext'
+import { languages } from '../languages/languages'
+import { LanguageContext } from '../globalContext/LanguageContext'
 import likeIconFilled from '../images/favorite.svg'
 import likeIcon from '../images/favorite-white.svg'
 
@@ -24,7 +22,11 @@ export default function FeedPage() {
     const [renderedPosts, setRenderedPosts] = useState([])
     const [showFields, setShowFields] = useState(false)
     const [form, setForm, handleValues, resetForm] = useForm({ title: '', text: '', search: '' })
-    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
+    const [language, setLanguage, menu, setMenu] = useContext(LanguageContext)
+
+    useEffect(() => {
+        document.title = languages[language].feed
+    }, [language])
 
     useEffect(() => {
         if (!window.localStorage.getItem('token')) {
@@ -51,9 +53,12 @@ export default function FeedPage() {
                     Authorization: token,
                 }
             })
-            setPosts(listOfPosts.data.posts)
+            let filteredPosts = listOfPosts.data.posts.filter((post) => {
+                return typeof post.text === 'string' && typeof post.title === 'string'
+            })
+            setPosts(filteredPosts)
         } catch (error) {
-            console.log(error.response)
+            alert(languages[language].errorMessage)
         }
     }
 
@@ -109,12 +114,11 @@ export default function FeedPage() {
             getPosts()
             resetForm()
         } catch (error) {
-            console.log(error.response)
+            alert(languages[language].errorMessage)
         }
     }
 
     const searchPost = () => {
-        console.log(form.search)
         if (form.search) {
             let newPostsList = posts.filter((post) => {
                 return (post.title.toLowerCase().includes(form.search.toLowerCase()) || post.username.toLowerCase().includes(form.search.toLowerCase()) || post.text.toLowerCase().includes(form.search.toLowerCase()))
@@ -135,64 +139,78 @@ export default function FeedPage() {
             </Header>
             {!posts[0] ?
                 <Loading /> :
-                <>  <ShowAndHideButtonContainer>
-                    <ShowAndHideButton onClick={()=>setShowFields(!showFields)} color="primary" variant="contained">{showFields ? languages[language].hide : languages[language].show} {languages[language].fieldToShowOrHide}</ShowAndHideButton>
-                </ShowAndHideButtonContainer>
+                <>
+                    <ShowAndHideButtonContainer>
+                        <ShowAndHideButton
+                            onClick={() => setShowFields(!showFields)}
+                            color="primary"
+                            variant="contained"
+                        >
+                            {showFields ? languages[language].hide : languages[language].show} {languages[language].fieldToShowOrHide}
+                        </ShowAndHideButton>
+                    </ShowAndHideButtonContainer>
                     { !showFields ?
-                    <div></div> :
-                    <FeedFormsContainer>
-                        <CreatePostForm onSubmit={createPost}>
-                            <h3>{languages[language].createYourPost}</h3>
-                            <StyledTextField
-                                label={languages[language].title}
-                                value={form.title}
-                                name="title"
-                                onChange={handleValues}
-                                type="text"
-                                required
-                                inputProps={{ pattern: '^.{1,100}$', title: languages[language].titlePattern }}
-                            />
-                            <StyledTextField
-                                label={languages[language].postText}
-                                value={form.text}
-                                name="text"
-                                onChange={handleValues}
-                                type="text"
-                                required
-                            />
-                            <Button type="submit" color="primary" variant="contained">{languages[language].createPost}</Button>
-                        </CreatePostForm>
-                        <SearchForm>
-                            <h3>{languages[language].searchAPost}</h3>
-                            <StyledTextField
-                                label={languages[language].search}
-                                value={form.search}
-                                name="search"
-                                onChange={handleValues}
-                                type="text"
-                            />
-                        </SearchForm>
-                    </FeedFormsContainer>
+                        <div></div> :
+                        <FeedFormsContainer>
+                            <CreatePostForm onSubmit={createPost}>
+                                <h3>{languages[language].createYourPost}</h3>
+                                <StyledTextField
+                                    label={languages[language].title}
+                                    value={form.title}
+                                    name="title"
+                                    onChange={handleValues}
+                                    type="text"
+                                    required
+                                    inputProps={{ pattern: '^.{1,100}$', title: languages[language].titlePattern }}
+                                />
+                                <StyledTextField
+                                    label={languages[language].postText}
+                                    value={form.text}
+                                    name="text"
+                                    onChange={handleValues}
+                                    type="text"
+                                    required
+                                />
+                                <Button
+                                    type="submit"
+                                    color="primary"
+                                    variant="contained"
+                                >
+                                    {languages[language].createPost}
+                                </Button>
+                            </CreatePostForm>
+                            <SearchForm>
+                                <h3>{languages[language].searchAPost}</h3>
+                                <StyledTextField
+                                    label={languages[language].search}
+                                    value={form.search}
+                                    name="search"
+                                    onChange={handleValues}
+                                    type="text"
+                                />
+                            </SearchForm>
+                        </FeedFormsContainer>
                     }
                     <PostsContainer>
-                        { !renderedPosts[0] ? 
-                        <h3>{languages[language].searchCorrespondence}</h3> :
-                        <>
-                        {renderedPosts.map((post) => {
-                            return <Post
-                                title={post.title}
-                                userName={post.username}
-                                text={post.text}
-                                positiveVote={() => vote(post.id, post.userVoteDirection, 1)}
-                                negativeVote={() => vote(post.id, post.userVoteDirection, -1)}
-                                numberOfPositiveVotes={post.votesCount}
-                                likeIcon={post.userVoteDirection === 1 ? likeIconFilled : likeIcon}
-                                deslikeColor={post.userVoteDirection === -1 ? 'black' : 'white'}
-                                numberOfComments={post.commentsCount}
-                                checkDetails={() => goToPostPage(history, post.id)}
-                            />
-                        })}
-                        </>}
+                        {!renderedPosts[0] ?
+                            <h3>{languages[language].searchCorrespondence}</h3> :
+                            <>
+                                {renderedPosts.map((post) => {
+                                    return <Post
+                                        key={post.id}
+                                        title={post.title}
+                                        userName={post.username}
+                                        text={post.text}
+                                        positiveVote={() => vote(post.id, post.userVoteDirection, 1)}
+                                        negativeVote={() => vote(post.id, post.userVoteDirection, -1)}
+                                        numberOfPositiveVotes={post.votesCount}
+                                        likeIcon={post.userVoteDirection === 1 ? likeIconFilled : likeIcon}
+                                        deslikeColor={post.userVoteDirection === -1 ? 'black' : 'white'}
+                                        numberOfComments={post.commentsCount}
+                                        checkDetails={() => goToPostPage(history, post.id)}
+                                    />
+                                })}
+                            </>}
                     </PostsContainer>
                 </>
             }

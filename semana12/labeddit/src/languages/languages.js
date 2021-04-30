@@ -1,5 +1,5 @@
 export const languages = {
-    pt:{
+    pt: {
         email: 'Email',
         password: 'Senha',
         goToRegister: 'Cadastre-se',
@@ -12,7 +12,7 @@ export const languages = {
         goBack: 'Voltar',
         logout: 'Log Out',
         createYourPost: 'Crie seu post!',
-        createPost:'Criar post',
+        createPost: 'Criar post',
         errorMessage: 'Ocorreu um erro no sistema e estamos trabalhando para corrigi-lo. Por favor, tente novamente mais tarde.',
         errorMessageLogin: 'Usuário ou senha incorreto.',
         searchCorrespondence: 'Não há correspondências com o texto buscado.',
@@ -32,8 +32,11 @@ export const languages = {
         show: 'Exibir',
         hide: 'Ocultar',
         fieldToShowOrHide: 'campos de busca e criação de post',
-    }, 
-    en:{
+        welcome: 'Bem vindo ao Labeddit!',
+        feed: 'Seu feed',
+        postDetails: 'Detalhes do post',
+    },
+    en: {
         email: 'E-mail',
         password: 'Password',
         goToRegister: 'Sign Up',
@@ -46,7 +49,7 @@ export const languages = {
         goBack: 'Go back',
         logout: 'Log Out',
         createYourPost: 'Create your post!',
-        createPost:'Create post',
+        createPost: 'Create post',
         errorMessage: 'There was an error in the system and we are working to fix it. Please try again later.',
         errorMessageLogin: 'Incorrect username of password.',
         searchCorrespondence: 'There are no correspondencies with the searched text.',
@@ -66,8 +69,11 @@ export const languages = {
         show: 'Show',
         hide: 'Hide',
         fieldToShowOrHide: 'search and post creation fields.',
+        welcome: 'Welcome to Labeddit!',
+        feed: 'Your feed',
+        postDetails: 'Post details',
     },
-    es:{
+    es: {
         email: 'Correo Electrónico',
         password: 'Contraseña',
         goToRegister: 'Registrate',
@@ -80,7 +86,7 @@ export const languages = {
         goBack: 'Volver',
         logout: 'Salir',
         createYourPost: 'Crea tu publicación!',
-        createPost:'Crear publicación',
+        createPost: 'Crear publicación',
         errorMessage: 'Hubo un error en nuestro sistema y ya lo estamos corrigiendo. Por favor, inténtalo de nuevo más tarde.',
         errorMessageLogin: 'Nombre de usuário o contraseña incorrecto.',
         searchCorrespondence: 'No hay correspondencias con el texto buscado.',
@@ -100,5 +106,8 @@ export const languages = {
         show: 'Mostrar',
         hide: 'Ocultar',
         fieldToShowOrHide: 'campos de búsqueda y creación de publicación',
+        welcome: 'Bienvenido al Labeddit!',
+        feed: 'Tu feed',
+        postDetails: 'Detalles de la publicación',
     }
 }

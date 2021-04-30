@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { FeedAndPostContainer, CommentsContainer, CreateCommentField, CreateCommentForm, LoginAndRegisterForm } from '../style/style'
+import { FeedAndPostContainer, CommentsContainer, CreateCommentField, CreateCommentForm } from '../style/style'
 import { useForm } from '../custom hooks and functions/useForm'
 import Header from '../components/Header'
 import Post from '../components/Post'
@@ -12,10 +12,9 @@ import { goBack } from '../coordinator/Coordinator'
 import likeIconFilled from '../images/favorite.svg'
 import likeIcon from '../images/favorite-white.svg'
 import logout from '../custom hooks and functions/logout'
-import {useLanguages} from '../custom hooks and functions/useLanguages'
 import LanguagesMenu from '../components/LanguagesMenu'
-import {languages} from '../languages/languages'
-import {LanguageContext} from '../globalContext/LanguageContext'
+import { languages } from '../languages/languages'
+import { LanguageContext } from '../globalContext/LanguageContext'
 
 export default function PostPage() {
     const history = useHistory()
@@ -24,7 +23,11 @@ export default function PostPage() {
     const [post, setPost] = useState({})
     const [seeComments, setSeeComments] = useState(false)
     const [form, setForm, handleValues, resetForm] = useForm({ text: '' })
-    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
+    const [language, setLanguage, menu, setMenu] = useContext(LanguageContext)
+
+    useEffect(() => {
+        document.title = `${languages[language].postDetails}: ${post.title ? post.title : ''}`
+    }, [language, post.title])
 
     useEffect(() => {
         getPostDetails(pathParams.postId)
@@ -37,9 +40,13 @@ export default function PostPage() {
                     Authorization: token
                 }
             })
-            setPost(postDetails.data.post)
+            const newListOfComments = postDetails.data.post.comments.filter((comment) => {
+                return typeof comment.text === 'string'
+            })
+            const filteredPost = { ...postDetails.data.post, comments: newListOfComments }
+            setPost(filteredPost)
         } catch (error) {
-            console.log(error.response)
+            alert(languages[language].errorMessage)
         }
     }
 
@@ -73,7 +80,6 @@ export default function PostPage() {
 
             setPost(newPostInfo)
         } catch (error) {
-            console.log(error)
             alert(languages[language].errorMessage)
         }
     }
@@ -168,10 +174,18 @@ export default function PostPage() {
                                         type="text"
                                         required
                                     />
-                                    <Button type="submit" size="small" color="primary" variant="contained">{languages[language].commentButton}</Button>
+                                    <Button
+                                        type="submit"
+                                        size="small"
+                                        color="primary"
+                                        variant="contained"
+                                    >
+                                        {languages[language].commentButton}
+                                    </Button>
                                 </CreateCommentForm>
                                 {post.comments.map((comment) => {
                                     return <Comment
+                                        key={comment.id}
                                         userName={comment.username}
                                         text={comment.text}
                                         positiveVote={() => voteComment(comment.id, comment.userVoteDirection, 1)}

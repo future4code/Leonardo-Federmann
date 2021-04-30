@@ -1,10 +1,11 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
-export const useLanguages = () =>{
+export const useLanguages = () => {
     const [language, setLanguage] = useState('pt')
     const [menu, setMenu] = useState(false)
-    const changeLanguage = (chosenLanguage) =>{
-        switch(chosenLanguage){
+
+    const changeLanguage = (chosenLanguage) => {
+        switch (chosenLanguage) {
             case 'pt':
                 setLanguage('pt')
                 break
@@ -17,5 +18,6 @@ export const useLanguages = () =>{
             default: break
         }
     }
+
     return [language, setLanguage, menu, setMenu, changeLanguage]
 }

@@ -1,19 +1,19 @@
-export const goToRegister = (history) =>{
+export const goToRegister = (history) => {
     history.push('/register')
 }
 
-export const goToLogin = (history) =>{
+export const goToLogin = (history) => {
     history.push('/')
 }
 
-export const goToFeed = (history) =>{
+export const goToFeed = (history) => {
     history.push('/feed')
 }
 
-export const goBack = (history) =>{
+export const goBack = (history) => {
     history.goBack()
 }
 
-export const goToPostPage = (history, id) =>{
+export const goToPostPage = (history, id) => {
     history.push(`/feed/${id}`)
 }

@@ -1,20 +1,22 @@
 import React, { useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { LoginAndRegisterForm, StyledTextField, LoginAndRegisterContainer, LogoContainer } from '../style/style'
 import { goToFeed, goToLogin } from '../coordinator/Coordinator'
 import { useForm } from '../custom hooks and functions/useForm'
 import axios from 'axios'
-import {useLanguages} from '../custom hooks and functions/useLanguages'
 import LanguagesMenu from '../components/LanguagesMenu'
-import {languages} from '../languages/languages'
-import {LanguageContext} from '../globalContext/LanguageContext'
+import { languages } from '../languages/languages'
+import { LanguageContext } from '../globalContext/LanguageContext'
 
 export default function RegisterPage() {
     const history = useHistory()
     const [form, setForm, handleValues] = useForm({ username: '', email: '', password: '' })
-    const [language, setLanguage, menu, setMenu, changeLanguage] = useContext(LanguageContext)
+    const [language, setLanguage, menu, setMenu] = useContext(LanguageContext)
+
+    useEffect(() => {
+        document.title = languages[language].goToRegister
+    }, [language])
 
     useEffect(() => {
         if (window.localStorage.getItem('token')) {
@@ -53,7 +55,7 @@ export default function RegisterPage() {
                     onChange={handleValues}
                     type="text"
                     required
-                    inputProps={{pattern: '^.{3,}$', title: languages[language].usernamePattern}}
+                    inputProps={{ pattern: '^.{3,}$', title: languages[language].usernamePattern }}
                 />
                 <StyledTextField
                     label={languages[language].email}
@@ -72,12 +74,30 @@ export default function RegisterPage() {
                     onChange={handleValues}
                     type="password"
                     required
-                    inputProps={{pattern: '^.{5,}$', title:languages[language].passwordPattern}}
+                    inputProps={{ pattern: '^.{5,}$', title: languages[language].passwordPattern }}
                 />
                 <div>
-                    <Button color="primary" variant="contained" type="submit">{languages[language].register}</Button>
-                    <Button color="primary" variant="contained" onClick={() => setMenu(true)}>{languages[language].changeLanguage}</Button>
-                    <Button color="primary" variant="contained" onClick={() => goToLogin(history)}>{languages[language].goToLogin}</Button>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        type="submit"
+                    >
+                        {languages[language].register}
+                    </Button>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => setMenu(true)}
+                    >
+                        {languages[language].changeLanguage}
+                    </Button>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => goToLogin(history)}
+                    >
+                        {languages[language].goToLogin}
+                    </Button>
                 </div>
             </LoginAndRegisterForm>
         </LoginAndRegisterContainer>
