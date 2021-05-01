@@ -21,8 +21,9 @@ Os botões exibidos nesta página são:
 Permite ao usuário realizar um cadastro na API de modo que possa acessar as páginas protegidas. Tal cadastro exigirá o preenchimento de um formulário com os seguintes campos e regras de validação:
 - **NOME DE USUÁRIO:** deve conter ao menos 3 caracteres, incluindo espaços e caracteres especiais;
 - **EMAIL:** deve conter um **@**;
-- **SENHA:** deve conter ao menos 3 caracteres, incluindo espaços e caracteres especiais.    
-Caso o formulário esteja preenchido obedecendo as regras explicitadas, o cadastro na API será realizado ao clicar na tecla Enter ou no botão **CADASTRAR**. Além disso, tal como na página de login, caso o usuário já esteja logado no sistema, essa página estará indispoível e irá direcioná-lo à página de Feed, explanada posteriormente.  
+- **SENHA:** deve conter ao menos 3 caracteres, incluindo espaços e caracteres especiais.  
+
+Caso o formulário seja preenchido obedecendo as regras explicitadas, o cadastro na API será realizado ao clicar na tecla Enter ou no botão **CADASTRAR**. Além disso, tal como na página de login, caso o usuário já esteja logado no sistema, essa página estará indispoível e irá direcioná-lo à página de Feed, explanada posteriormente.  
 Os botões exibidos nesta página são:  
 - **CADASTRAR:** realizará o cadastro do usuário caso todos os campos do formulário estejam corretamente preenchidos. Nesse caso, o usuário estará automaticamente logado e será direcionado à página de Feed, explanado posteriormente;
 - **DEFINIR IDIOMA:** mesma funcionalidade supracitada;
