@@ -11,7 +11,7 @@ Segue uma descrição das páginas e de suas funcionalidades:
 
 #### Login
 
-Inicialmente, o usuário é conduzido a uma página de login, no qual será possível acessar as páginas principais da aplicação por meio do preenchimento de dois campos de input (um referente ao email e outro, à senha), ambos dentro de um formulário que será enviado ao clicar em um botão **LOGIN** ou na tecla Enter. Ressalta-se que a validação de ambos os campos impede que o formulário seja enviado caso um deles ou ambos estejam vazios ou caso o email não contenha um **@**; e que, caso o usuário já esteja logado no sistema, essa página estará indispoível e irá direcioná-lo à página de Feed, explanada posteriormente.  
+Inicialmente, o usuário é conduzido a uma página de login, no qual será possível acessar as páginas principais da aplicação por meio do preenchimento de dois campos de input (um referente ao email e outro, à senha), ambos dentro de um formulário que será enviado ao clicar em um botão **LOGIN** ou na tecla Enter. Ressalta-se que a validação de ambos os campos impede que o formulário seja enviado caso um deles ou ambos estejam vazios ou caso o email não contenha um **@**; e que, caso o usuário já esteja logado no sistema, essa página estará indisponível e ele será direcionado à página de Feed, explanada posteriormente.  
 Os botões exibidos nesta página são:
 - **LOGIN:** permite efetuar o login e acessar as páginas protegidas do site, caso o formulário da página seja preenchido. Se o usuário já tiver um cadastro na API, o botão irá direcioná-lo à página de Feed (explanada posteriormente); se não tiver, irá exibir uma mensagem de "usuário ou senha incorreto";
 - **DEFINIR IDIOMA:** exibirá um menu responsivo na lateral esquerda da tela por meio do qual é possível selecionar o idioma com o qual as funcionalidades do site são exibidas. Tal funcionalidade se faz presentes em todas as páginas da aplicação. Os idiomas disponíveis são português, inglês e espanhol;
@@ -62,7 +62,6 @@ Será exibida caso o link digitado pelo usuário não corresponda a nenhuma das 
 ### REQUISITOS TÉCNICOS
 
 Algumas das ferramentas utilizadas foram:
-A atividade aspirou a exercitar os conhecimentos relativos a estado global, à função **React.createContext** e ao hook **useContext**, estudados na semana de realização da atividade. Isto posto, foi criado um estado global (encontrado na pasta **global**, cujo um dos arquivos, **PokemonProvider.js**, contém as arrays de estado referentes às listas de pokemons supracitadas, as respectivas funções para alterá-las e a requisição utilizada para obter a lista de Pokemons da API). Ademais, foram usados outros conhecimentos adquiridos ao longo do curso, dentre os quais estão:
 - **ESTADO GLOBAL:** as ferramentas **React.createContext** e **useContext** foram usadas para disponibilizar as versões em português, inglês e espanhol do site;
 - **REACT ROUTER:** a navegação entre páginas utilizou as tags BrowserRouter, Switch e Route, bem como os hooks **useHistory** e **useParams**, próprios do React Router;
 - **COMPONENTES FUNCIONAIS:** não foram usados componentes de classe, visando ao melhor desempenho do código;
