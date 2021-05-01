@@ -77,7 +77,11 @@ height: 100vh;
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: flex-start;
 background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/1866145-papel-de-parede-de-azul-claro-gradiente-poligono-vetor.jpg');
+@media (max-height: 450px){
+    height: 200vh;
+}
 `
 
 export const LogoContainer = styled.section`
@@ -95,7 +99,7 @@ animation: entrance 1s;
 export const LoginAndRegisterForm = styled.form`
 display: flex;
 width: 30%;
-margin:0 10%;
+margin:1.5em 10%;
 flex-direction: column;
 align-items: center;
 justify-content: flex-start;
@@ -112,7 +116,7 @@ div{
     display: flex;
     justify-content: space-between;
 }
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 80%;
     div{
         flex-direction: column;
@@ -184,7 +188,7 @@ height: 7em;
 display: flex;
 flex-direction: column;
 justify-content: center;
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 90%;
 }
 `
@@ -215,8 +219,11 @@ h3{
     color: #2c387e;
     margin-bottom: 0;
 }
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 90%;
+    Button{
+        margin-top: 1em;
+    }
 }
 `
 
@@ -233,9 +240,11 @@ h3{
     color: #2c387e;
     margin-bottom: 0;
 }
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 90%;
     height: 15vh;
+    margin-top: 4.5em;
+    margin-bottom: 2em;
 }
 `
 
@@ -262,7 +271,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 overflow-y: auto;
-@media (max-width:800px){
+@media (max-width:1100px){
     width: 100%;
 }
 `
@@ -274,7 +283,7 @@ margin: 2em 0;
 display: flex;
 justify-content: space-between;
 align-items: center;
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 91%;
 }
 `
@@ -311,7 +320,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: flex-start;
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 90%;
     max-height: 25em;
 }
@@ -330,7 +339,7 @@ h3{
     align-items: center;
     justify-content: center;
     text-align: center;
-    @media (max-width: 800px){
+    @media (max-width: 1100px){
         height: 6em;
     }
 }
@@ -414,7 +423,7 @@ section{
         cursor: pointer;
     }
 }
-@media (max-width: 800px){
+@media (max-width: 1100px){
     width: 90%;
 }
 `

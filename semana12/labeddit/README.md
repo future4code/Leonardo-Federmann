@@ -70,8 +70,9 @@ A atividade aspirou a exercitar os conhecimentos relativos a estado global, à f
 
 ### O QUE FUNCIONA
 
-Todas as funcionalidades supracitadas estão em pleno desempenho. A aplicação também está responsiva para todos os tipos de aparelhos e persistirá os dados de curtir e descurtir de cada usuário, visto estar ligada a uma API. Além disso, há também uma funcionalidade de filtro que removerá das listas de posts e comentários todos aqueles cujo tipo não sejam strings - e, logo, não sejam textos capazes de serem renderizados. 
+Todas as funcionalidades supracitadas estão em pleno desempenho. A aplicação também está responsiva para todos os tipos de aparelhos, tanto para a posição vertical quanto para a horizontal, e persistirá os dados de curtir e descurtir de cada usuário, visto estar ligada a uma API. Além disso, há também uma funcionalidade de filtro que removerá das listas de posts e comentários todos aqueles cujo tipo não seja string - e, logo, não sejam textos capazes de serem renderizados. 
 
 ### O QUE NÃO FUNCIONA
 
-A funcionalidade de curtir e descurtir possui um bug. Caso o usuário clique duas vezes rapidamente no botão de curtir, a quantidade de curtidas irá aumentar em duas unidades em vez de uma, o que também ocorre no botão de descurtir. Caso o botão de curtir já esteja selecionado e o de descurtir for clicado duas vezes rapidamente, a quantidade de curtidas será reduzida em quatro unidades e vice-versa.
+A funcionalidade de curtir e descurtir possui um bug. Caso o usuário clique duas vezes rapidamente no botão de curtir, a quantidade de curtidas irá aumentar em duas unidades em vez de uma, o que também ocorre no botão de descurtir. Caso o botão de curtir já esteja selecionado e o de descurtir for clicado duas vezes rapidamente, a quantidade de curtidas será reduzida em quatro unidades e vice-versa.  
+Ademais, a imagem de fundo da tela de cadastro possui leves falhas de responsividade para a posição horizontal do aparelho Surface Duo. 

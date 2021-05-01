@@ -78,7 +78,7 @@ export default function FeedPage() {
                     Authorization: token,
                 }
             })
-            let newPostsInfo = [...posts]
+            let newPostsInfo = [...renderedPosts]
             newPostsInfo.forEach((post) => {
                 if (post.id === id) {
                     post.userVoteDirection = correctedDirection
@@ -93,7 +93,7 @@ export default function FeedPage() {
                     }
                 }
             })
-            setPosts(newPostsInfo)
+            setRenderedPosts(newPostsInfo)
         } catch (error) {
             alert(languages[language].errorMessage)
         }
