@@ -1,0 +1,11 @@
+{
+  "name": "exercicio3",
+  "version": "1.0.0",
+  "description": "Adicionar uma nova tarefa a uma lista de tarefas pré-definida.",
+  "main": "exercicio3.js",
+  "scripts": {
+    "start": "node ./exercicio3"
+  },
+  "author": "Leonardo Federmann",
+  "license": "ISC"
+}
