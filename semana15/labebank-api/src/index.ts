@@ -68,13 +68,13 @@ const customers: customer[] = [
     }
 ]
 
-//Get all customers
+//GET ALL CUSTOMERS
 // Nenhuma entrada é necessária.
 app.get('/customers/all', (req: Request, res: Response) => {
     res.status(200).send(customers)
 })
 
-//Add new customer
+//ADD NEW CUSTOMER
 //Para a entrada, somente é necessário um body, conforme o exemplo a seguir:
 // body = {
 //     name: "Tony Startk",
@@ -130,7 +130,7 @@ app.post('/customers/new', (req: Request, res: Response) => {
     }
 })
 
-// Execute all the transitions scheduled for today
+// EXECUTE ALL THE TRANSACTIONS SCHEDULED FOR TODAY
 // Nenhuma entrada é necessária.
 app.put("/customers/execute-day-transitions", (req: Request, res: Response) => {
     const today = new Date().toISOString().split("T")[0]
@@ -150,8 +150,7 @@ app.put("/customers/execute-day-transitions", (req: Request, res: Response) => {
     })
 })
 
-//transaction among customers
-
+//TRANSACTION AMONG CUSTOMERS
 //Para a entrada, somente um body é necessário, conforme o exemplo a seguir:
 // body = {
 //     senderName: "Alice",
@@ -292,7 +291,7 @@ app.post('/customers/transaction', (req: Request, res: Response) => {
     }
 })
 
-//Get customer's balance
+//GET CUSTOMER'S BALANCE
 // Para a entrada, é necessário inserir o CPF como path param e um body contendo somente o nome do cliente:
 // body = {
 //     name: "Alice"
@@ -333,10 +332,7 @@ app.get('/customers/:cpf', (req: Request, res: Response) => {
     }
 })
 
-//Add money to balance or pay bill
-
-//Elaborei somente um endpoint para adicionar um valor ao saldo do cliente e pagar uma conta, pois, caso fosse elaborado um endpoint para cada uma dessas funcionalidades, ambos seriam demasiadamente parecidos. Para diferenciar ambas as operações, adicionei uma variável "addOrPay", cujo valor deverá ser passado no body da requisição e deve ser igual a "add" ou "pay" (conforme o enum no início deste arquivo).
-
+//ADD MONEY TO BALANCE OR PAY BILL
 //Para a entrada, é necessário inserir o CPF como path params e um body com as informações de nome, valor da operação, data e opção de pagar conta ou adicionar valor ao saldo, conforme exemplo a seguir:
 // body = {
 //     name:"Alice",
@@ -344,6 +340,8 @@ app.get('/customers/:cpf', (req: Request, res: Response) => {
 //     date: "2021-05-21",
 //     addOrPay: "pay"
 // }
+
+//OBS: Elaborei somente um endpoint para adicionar um valor ao saldo do cliente e pagar uma conta, pois, caso fosse elaborado um endpoint para cada uma dessas funcionalidades, ambos seriam demasiadamente parecidos. Para diferenciar ambas as operações, adicionei uma variável "addOrPay", cujo valor deverá ser passado no body da requisição e deve ser igual a "add" ou "pay" (conforme o enum no início deste arquivo).
 
 app.put('/customers/add-balance/:cpf', (req: Request, res: Response) => {
     try {
