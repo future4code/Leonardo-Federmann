@@ -38,7 +38,7 @@ const customers: customer[] = [
             },
             {
                 value: -250,
-                date: '2021-02-05',
+                date: '2021-05-21',
                 description: 'Ifood'
             }
         ]
@@ -51,7 +51,7 @@ const customers: customer[] = [
         extract: [
             {
                 value: -500,
-                date: '2017-01-14',
+                date: '2021-05-21',
                 description: 'Manutenção do meu sistema.',
             },
             {
@@ -69,13 +69,20 @@ const customers: customer[] = [
 ]
 
 //Get all customers
+// Nenhuma entrada é necessária.
 app.get('/customers/all', (req: Request, res: Response) => {
     res.status(200).send(customers)
 })
 
 //Add new customer
+//Para a entrada, somente é necessário um body, conforme o exemplo a seguir:
+// body = {
+//     name: "Tony Startk",
+//     cpf: 99999999999,
+//     birthdate: "1937-07-15"
+// }
+
 app.post('/customers/new', (req: Request, res: Response) => {
-    //O QUE SERIA LEGAL: validar CPF para ter o formato de um CPF.
     try {
         const name: string = req.body.name
         const cpf: number = req.body.cpf
@@ -123,6 +130,26 @@ app.post('/customers/new', (req: Request, res: Response) => {
     }
 })
 
+// Execute all the transitions scheduled for today
+// Nenhuma entrada é necessária.
+app.put("/customers/execute-day-transitions", (req: Request, res: Response) => {
+    const today = new Date().toISOString().split("T")[0]
+    customers.forEach((customer) => {
+        customer.extract.forEach((transaction) => {
+            if (transaction.date === today) {
+                customer.balance += transaction.value
+            }
+        })
+    })
+    customers.forEach((customer) => {
+        const newExtract = customer.extract.filter((transaction) => transaction.date !== today)
+        customer.extract = newExtract
+    })
+    res.status(200).send({
+        message: "Transações do dia realizadas com sucesso!"
+    })
+})
+
 //transaction among customers
 
 //Para a entrada, somente um body é necessário, conforme o exemplo a seguir:
@@ -138,6 +165,7 @@ app.post('/customers/new', (req: Request, res: Response) => {
 app.post('/customers/transaction', (req: Request, res: Response) => {
     try {
         const { senderName, senderCpf, receiverName, receiverCpf, value, date } = req.body
+
         if (!senderName ||
             !senderCpf ||
             !receiverName ||
@@ -180,11 +208,11 @@ app.post('/customers/transaction', (req: Request, res: Response) => {
         }
 
         if (sender.name !== senderName) {
-            throw new Error("Nome ou CPF incorreto do cliente que fará a transação.")
+            throw new Error("Nome incorreto do cliente que fará a transação.")
         }
 
         if (receiver.name !== receiverName) {
-            throw new Error("Nome ou CPF incorreto do cliente a ser creditado.")
+            throw new Error("Nome incorreto do cliente a ser creditado.")
         }
 
         if (value > sender.balance) {
@@ -205,16 +233,17 @@ app.post('/customers/transaction', (req: Request, res: Response) => {
         if (!transactionDate) {
             throw new Error("Favor inserir uma data válida.")
         }
+
         let senderBalance
         let receiverBalance
         customers.forEach((customer) => {
             if (today === transactionDate) {
                 if (customer.cpf === senderCpf) {
                     customer.balance -= value
-                    senderBalance=customer.balance
+                    senderBalance = customer.balance
                 } else if (customer.cpf === receiverCpf) {
                     customer.balance += value
-                    receiverBalance=customer.balance
+                    receiverBalance = customer.balance
                 }
             } else {
                 if (customer.cpf === senderCpf) {
@@ -233,29 +262,29 @@ app.post('/customers/transaction', (req: Request, res: Response) => {
             }
 
         })
-        
-        if(today === transactionDate){
+
+        if (today === transactionDate) {
             res.status(200).send({
-                message:"Transferência realizada com sucesso!",
-                sender:{
+                message: "Transferência realizada com sucesso!",
+                sender: {
                     name: senderName,
                     balance: senderBalance
                 },
-                receiver:{
+                receiver: {
                     name: receiverName,
                     balance: receiverBalance
                 }
             })
-        }else{
+        } else {
             res.status(200).send({
-                message:"Transferência agendada com sucesso!",
+                message: "Transferência agendada com sucesso!",
                 date,
                 value,
-                sender: senderName,   
+                sender: senderName,
                 receiver: receiverName
             })
         }
-        
+
     } catch (error) {
         res.status(400).send({
             message: error.message
@@ -264,10 +293,15 @@ app.post('/customers/transaction', (req: Request, res: Response) => {
 })
 
 //Get customer's balance
+// Para a entrada, é necessário inserir o CPF como path param e um body contendo somente o nome do cliente:
+// body = {
+//     name: "Alice"
+// }
 app.get('/customers/:cpf', (req: Request, res: Response) => {
     try {
         const name: string = req.body.name
         const cpf: number = Number(req.params.cpf)
+
         if (!name || !cpf) {
             throw new Error("Favor inserir um nome e um CPF.")
         }
@@ -301,10 +335,9 @@ app.get('/customers/:cpf', (req: Request, res: Response) => {
 
 //Add money to balance or pay bill
 
-//Elaborei somente um endpoint para adicionar um valor ao saldo do cliente ou pagar uma conta, pois, caso fosse elaborado um endpoint para cada uma dessas funcionalidades, ambos seriam demasiadamente parecidos. Para diferenciar ambas as operações, adicionei uma variável "addOrPay", cujo valor deverá ser passado no body da requisição e deve ser igual a "add" ou "pay" (conforme o enum no início deste arquivo).
-//Exemplo de entrada válida para teste:
+//Elaborei somente um endpoint para adicionar um valor ao saldo do cliente e pagar uma conta, pois, caso fosse elaborado um endpoint para cada uma dessas funcionalidades, ambos seriam demasiadamente parecidos. Para diferenciar ambas as operações, adicionei uma variável "addOrPay", cujo valor deverá ser passado no body da requisição e deve ser igual a "add" ou "pay" (conforme o enum no início deste arquivo).
 
-//path params: cpf
+//Para a entrada, é necessário inserir o CPF como path params e um body com as informações de nome, valor da operação, data e opção de pagar conta ou adicionar valor ao saldo, conforme exemplo a seguir:
 // body = {
 //     name:"Alice",
 //     value: 2000,
@@ -319,6 +352,7 @@ app.put('/customers/add-balance/:cpf', (req: Request, res: Response) => {
         const value = req.body.value
         const date = req.body.date
         const addOrPay: ADD_OR_PAY | undefined = req.body.addOrPay
+
         if (addOrPay !== "add" && addOrPay !== "pay") {
             throw new Error("Favor selecionar se deseja adicionar o valor ao extrato ou pagar uma conta.")
         }
