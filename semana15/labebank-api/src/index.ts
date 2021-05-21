@@ -349,6 +349,7 @@ app.put('/customers/add-balance/:cpf', (req: Request, res: Response) => {
         const cpf = Number(req.params.cpf)
         const value = req.body.value
         const date = req.body.date
+        const description = req.body.description
         const addOrPay: ADD_OR_PAY | undefined = req.body.addOrPay
 
         if (addOrPay !== "add" && addOrPay !== "pay") {
@@ -364,8 +365,14 @@ app.put('/customers/add-balance/:cpf', (req: Request, res: Response) => {
         if (!date) {
             throw new Error("Favor inserir uma data.")
         }
+        if (!description) {
+            throw new Error("Favor inserir uma descrição da operação.")
+        }
         if (typeof value !== 'number') {
             throw new Error("Favor inserir uma quantidade válida para adicionar ao saldo.")
+        }
+        if (typeof description !== 'string') {
+            throw new Error("Favor inserir uma descrição válida da operação.")
         }
 
         const currentCustomer = customers.find(c => c.cpf === cpf)
@@ -414,7 +421,7 @@ app.put('/customers/add-balance/:cpf', (req: Request, res: Response) => {
                     customer.extract.push({
                         value: addOrPay === "add" ? value : -value,
                         date,
-                        description: "Acréscimo ao saldo."
+                        description,
                     })
                     res.status(200).send({
                         message: "Operação agendada com sucesso!",
