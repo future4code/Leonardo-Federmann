@@ -405,7 +405,7 @@ app.put('/customers/add-balance/:cpf', (req: Request, res: Response) => {
                 if (today === transactionDate) {
                     addOrPay === "add" ? customer.balance += value : customer.balance -= value
                     res.status(200).send({
-                        message: "Saldo adicionado com sucesso!",
+                        message: addOrPay==='add' ? "Saldo adicionado com sucesso!" : "Conta paga com sucesso!",
                         name: customer.name,
                         cpf: customer.cpf,
                         balance: customer.balance
