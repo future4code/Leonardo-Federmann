@@ -150,4 +150,16 @@ VALUES(
 10
 );
 
+### 6
+
+- **a-)** SELECT id, nome, evaluation FROM movies WHERE id="004";
+- **b-)** SELECT * FROM movies WHERE nome="Até que a sorte nos separe";
+- **c-)** SELECT id, nome, synopsis FROM movies WHERE evaluation>=7;
+
+### 7
+
+- **a-)** SELECT * FROM movies WHERE nome LIKE "%vida%";
+- **b-)** SELECT * FROM movies WHERE nome LIKE "%doce%" OR nome LIKE "%doce%";
+- **c-)** SELECT * FROM movies WHERE release_date<"2021-05-24"; ==> 24/05/2021 é o dia de realização desta atividade.
+- **d-)** SELECT * FROM movies WHERE release_date<"2021-05-24" AND (nome LIKE "%doce%" OR synopsis LIKE "%doce%") AND evaluation>7;
 
