@@ -148,3 +148,16 @@ app.post("/actor/update", async(req:Request, res:Response)=>{
         })
     }
 })
+
+app.delete("/actor/delete/:id", async(req:Request, res:Response)=>{
+    try{
+        await connection.raw(`
+        DELETE FROM actor WHERE id="${req.params.id}";
+        `)
+        res.status(200).send("Ator deletado com sucesso!")
+    }catch(error){
+        res.status(400).send({
+            message: error.message
+        })
+    }
+})
