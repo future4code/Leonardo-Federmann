@@ -108,10 +108,10 @@ import app from './app'
 app.get("/actor", async(req:Request, res:Response)=>{
     try{
         const gender_count = await connection.raw(`
-        SELECT COUNT(*) FROM actor WHERE gender="${req.query.gender}";
+        SELECT COUNT(*) AS contagem FROM actor WHERE gender="${req.query.gender}";
         `)
         res.status(200).send({
-            count: gender_count[0][0]
+            count: gender_count[0][0].contagem
         })
     }catch(error){
         res.status(400).send({

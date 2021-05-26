@@ -80,17 +80,18 @@ app.get("/actor/:id", async(req:Request, res:Response)=>{
 })
 
 - **b-)**
-app.get("/actor/:id", async(req:Request, res:Response)=>{
+app.get("/actor", async(req:Request, res:Response)=>{
     try{
-        const actor = await connection.raw(`
-        SELECT * FROM actor WHERE id=${req.params.id};
+        const gender_count = await connection.raw(`
+        SELECT COUNT(*) AS "contagem" FROM actor WHERE gender="${req.query.gender}";
         `)
         res.status(200).send({
-            message:"success",
-            actor:actor[0][0]
+            count: gender_count[0][0]
         })
     }catch(error){
-        res.status(400).send(error.message)
+        res.status(400).send({
+            message:error.message
+        })
     }
 })
 
