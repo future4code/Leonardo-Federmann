@@ -563,7 +563,7 @@ app.put('/task/:id/status/edit', async (req: Request, res: Response): Promise<vo
         `)
 
         res.status(200).send({
-            message: `Status da tarefa "${task[0][0].title}" atualizado com sucesso para "${status}"`
+            message: `Status da tarefa ${task[0][0].title} atualizado com sucesso para ${status}`
         })
 
     } catch (error) {
