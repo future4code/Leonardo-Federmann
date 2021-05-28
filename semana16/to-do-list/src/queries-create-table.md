@@ -1,4 +1,4 @@
-## Queries usadas para este banco de dados
+## QUERIES USADAS PARA A CRIAÇÃO DE TABELAS NESTE BANCO DE DADOS
 
 ### Criação da tabela de usuários
 CREATE TABLE list_users(

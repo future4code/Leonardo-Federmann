@@ -2,12 +2,17 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connection from './connection'
-import { parseCommandLine } from 'typescript'
 
 dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+enum STATUS {
+    TODO = "to do",
+    DOING = "doing",
+    DONE = "done"
+}
 
 //CRIAÇÃO DE USUÁRIO
 // body = {
@@ -15,7 +20,6 @@ app.use(cors())
 //     "nickname": "astrodev",
 //     "email": "astro@dev.com"
 // } 
-
 app.post('/user', async (req: Request, res: Response): Promise<void> => {
     try {
         const { name, nickname, email } = req.body
@@ -64,26 +68,25 @@ app.post('/user', async (req: Request, res: Response): Promise<void> => {
 
 //BUSCAR USUÁRIO PELA CORRESPONDÊNCIA
 // Necessário inserir somente o valor do campo de busca como query param.
-
-app.get('/user', async(req:Request, res:Response):Promise<void>=>{
-    try{
+app.get('/user', async (req: Request, res: Response): Promise<void> => {
+    try {
         const query = req.query.query as string
 
-        if(!query){
+        if (!query) {
             throw new Error("Favor inserir um texto válido para a busca.")
         }
 
         const all_users = await connection.raw(`
         SELECT name, nickname, email FROM list_users;
         `)
-        const searched_users = all_users[0].filter((task:any)=>{
-            return task.name.toLowerCase().includes(query.toLowerCase()) || 
-            task.nickname.toLowerCase().includes(query.toLowerCase()) || 
-            task.email.toLowerCase().includes(query.toLowerCase())
+        const searched_users = all_users[0].filter((task: any) => {
+            return task.name.toLowerCase().includes(query.toLowerCase()) ||
+                task.nickname.toLowerCase().includes(query.toLowerCase()) ||
+                task.email.toLowerCase().includes(query.toLowerCase())
         })
         res.status(200).send(searched_users)
 
-    }catch(error){
+    } catch (error) {
         if (error.sqlMessage === 'connect ETIMEDOUT') {
             res.status(500).send({
                 message: 'Ops! Parece que houve um problema com a sua internet. Por favor, tente novamente mais tarde'
@@ -129,7 +132,6 @@ app.get('/user/all', async (req: Request, res: Response): Promise<void> => {
 
 //BUSCAR USUÁRIO PELO ID
 // Necessário apenas passar o id como path param.
-
 app.get('/user/:id', async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await connection.raw(`
@@ -169,7 +171,6 @@ app.get('/user/:id', async (req: Request, res: Response): Promise<void> => {
 //     "nickname": "astrodev",
 //     "email": "astro@dev.com"
 // } 
-
 app.put('/user/edit/:id', async (req: Request, res: Response): Promise<void> => {
     try {
         const id = req.params.id
@@ -271,7 +272,6 @@ app.put('/user/edit/:id', async (req: Request, res: Response): Promise<void> => 
 //     "deadline":"28/05/2021",
 //     "requester_id":2
 // }
-
 app.post('/task', async (req: Request, res: Response): Promise<void> => {
     try {
         const { title, description, deadline, requester_id } = req.body
@@ -291,7 +291,7 @@ app.post('/task', async (req: Request, res: Response): Promise<void> => {
         if (!deadline || typeof deadline !== 'string' || !deadline.includes("/")) {
             throw new Error('Favor inserir uma data limite válida para a realização da tarefa.')
         }
-        
+
         const deadline_array = deadline.split("/")
         const corrected_deadline = `${deadline_array[2]}-${deadline_array[1]}-${deadline_array[0]}`
         const today = new Date().toISOString().split("T")[0]
@@ -329,7 +329,8 @@ app.post('/task', async (req: Request, res: Response): Promise<void> => {
 })
 
 // BUSCAR TAREFA CRIADA POR UM USUÁRIO
-
+// Necessário apenas passar o id do criador da tarefa como query param, sendo seu nome: creatorUserId
+// EXEMPLO: http://localhost:3003/task?creatorUserId=1
 app.get('/task', async (req: Request, res: Response): Promise<void> => {
     try {
         const creatorUserId = req.query.creatorUserId
@@ -352,7 +353,7 @@ app.get('/task', async (req: Request, res: Response): Promise<void> => {
         WHERE list_users.id=${creatorUserId};
         `)
 
-        tasks_info[0].forEach((task:any) => {
+        tasks_info[0].forEach((task: any) => {
             const deadline_array = new Date(task.limitDate).toISOString().split("T")[0].split("-")
             const corrected_deadline = `${deadline_array[2]}/${deadline_array[1]}/${deadline_array[0]}`
             task.limitDate = corrected_deadline
@@ -370,7 +371,7 @@ app.get('/task', async (req: Request, res: Response): Promise<void> => {
         if (error.sqlMessage) {
             res.status(500).send({
                 message: error.sqlMessage,
-                tasks:[]
+                tasks: []
             })
         }
 
@@ -381,11 +382,15 @@ app.get('/task', async (req: Request, res: Response): Promise<void> => {
 })
 
 // ATRIBUIR RESPONSÁVEL A UMA TAREFA
-
-app.post('/task/responsible', async(req:Request, res:Response):Promise<void>=>{
-    try{
-        const {taskId, userId} = req.body
-        if(!taskId){
+// Necessário passar o id da tarefa e o id do usuário no body.
+// body = {
+//     "userId":1,
+//     "taskId":3
+// }
+app.post('/task/responsible', async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { taskId, userId } = req.body
+        if (!taskId) {
             throw new Error('Favor inserir um ID válido de uma tarefa.')
         }
         const task = await connection.raw(`
@@ -395,7 +400,7 @@ app.post('/task/responsible', async(req:Request, res:Response):Promise<void>=>{
             throw new Error('Não existe uma tarefa com o ID inserido.')
         }
 
-        if(!userId){
+        if (!userId) {
             throw new Error('Favor inserir um ID válido de um usuário.')
         }
         const user = await connection.raw(`
@@ -413,8 +418,8 @@ app.post('/task/responsible', async(req:Request, res:Response):Promise<void>=>{
         res.status(200).send({
             message: 'Usuário designado com sucesso!'
         })
-        
-    }catch(error){
+
+    } catch (error) {
         if (error.sqlMessage === 'connect ETIMEDOUT') {
             res.status(500).send({
                 message: 'Ops! Parece que houve um problema com a sua internet. Por favor, tente novamente mais tarde'
@@ -424,7 +429,7 @@ app.post('/task/responsible', async(req:Request, res:Response):Promise<void>=>{
         if (error.sqlMessage) {
             res.status(500).send({
                 message: error.sqlMessage,
-                tasks:[]
+                tasks: []
             })
         }
 
@@ -436,7 +441,6 @@ app.post('/task/responsible', async(req:Request, res:Response):Promise<void>=>{
 
 // BUSCAR TAREFA PELO ID
 // Necessário somente passar o id da tarefa como path param.
-
 app.get('/task/:id', async (req: Request, res: Response): Promise<void> => {
     try {
         const id = req.params.id
@@ -471,6 +475,108 @@ app.get('/task/:id', async (req: Request, res: Response): Promise<void> => {
         if (error.sqlMessage) {
             res.status(500).send({
                 message: error.sqlMessage
+            })
+        }
+
+        res.status(400).send({
+            message: error.message
+        })
+    }
+})
+
+//BUSCAR USUÁRIOS RESPONSÁVEIS POR UMA TAREFA
+// Necessário somente passar o id da tarefa como path param.
+app.get('/task/:id/responsible', async (req: Request, res: Response): Promise<void> => {
+    try {
+        const id = req.params.id
+        if (!id) {
+            throw new Error('Favor inserir um ID válido.')
+        }
+        const task = await connection.raw(`
+            SELECT title FROM list_tasks WHERE id=${id};
+        `)
+        if (!task[0][0]) {
+            throw new Error('Não existe uma tarefa com o ID inserido.')
+        }
+
+        const responsible_users = await connection.raw(`
+        SELECT list_users.id, nickname FROM assigned_users 
+        JOIN list_users
+        ON list_users.id=user_id
+        WHERE task_id = ${id};
+        `)
+
+        if (!responsible_users[0][0]) {
+            throw new Error('Não há usuários responsáveis para essa tarefa.')
+        }
+
+        res.status(200).send(responsible_users[0])
+
+    } catch (error) {
+        if (error.sqlMessage === "connect ETIMEDOUT") {
+            res.status(500).send({
+                message: 'Ops! Parece que houve um problema com a sua internet. Por favor, tente novamente mais tarde'
+            })
+        }
+
+        if (error.sqlMessage) {
+            res.status(500).send({
+                message: error.sqlMessage
+            })
+        }
+
+        res.status(400).send({
+            message: error.message
+        })
+    }
+})
+
+// ALTERAR STATUS DE UMA TAREFA
+//Necessário passar o id da tarefa como path param e seu novo status no body:
+// body = {
+//     "status":"doing"
+// }
+app.put('/task/:id/status/edit', async (req: Request, res: Response): Promise<void> => {
+    try {
+        const status: STATUS = req.body.status
+        const id = req.params.id
+        if (!id) {
+            throw new Error('Favor inserir um ID válido.')
+        }
+        const task = await connection.raw(`
+            SELECT title FROM list_tasks WHERE id=${id};
+        `)
+        if (!task[0][0]) {
+            throw new Error('Não existe uma tarefa com o ID inserido.')
+        }
+        if (!status) {
+            throw new Error("Favor inserir um status válido.")
+        }
+        if (status !== "to do" && status !== "doing" && status !== "done") {
+            throw new Error('Favor inserir um valor válido para o status: to do, doing ou done.')
+        }
+
+        await connection.raw(`
+        UPDATE list_tasks
+        SET status="${status}"
+        WHERE id=${id};
+        `)
+
+        res.status(200).send({
+            message: `Status da tarefa "${task[0][0].title}" atualizado com sucesso para "${status}"`
+        })
+
+    } catch (error) {
+        if (error.sqlMessage === 'connect ETIMEDOUT') {
+            res.status(500).send({
+                message: 'Ops! Parece que houve um problema com a sua internet. Por favor, tente novamente mais tarde'
+            })
+        }
+
+        if (error.sqlMessage) {
+            res.status(500).send({
+                message: error.sqlMessage,
+                tasks: []
             })
         }
 
