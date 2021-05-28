@@ -1,0 +1,11 @@
+{
+  "name": "exercicio1",
+  "version": "1.0.0",
+  "description": "Exibir nome, idade e idade após 7 anos",
+  "main": "exercicio1.js",
+  "scripts": {
+    "start": "node ./exercicio1"
+  },
+  "author": "Leonardo Federmann",
+  "license": "ISC"
+}
