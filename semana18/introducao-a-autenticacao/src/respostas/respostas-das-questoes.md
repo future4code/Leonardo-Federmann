@@ -31,7 +31,11 @@ Todos os itens foram realizados na função createUser, na pasta ENDPOINTS. Agor
 Função e endpoint criados no arquivo login, na pasta ENDPOINTS, e no arquivo index.
 
 ### 7
+- **a-)** O as any indica que o valor retornado por meio da função jwt.verify poderá ser de qualquer tipo. Uma vez que o valor retornado será um objeto que contém, além do payload, outras informações (como o momento de início e de término da validade do token, ambos expressos em timeslamp), tal garantia por meio do as any será necessária.
+- **b-)** Função criada no arquivo authenticator, na pasta MIDDLEWARES.
 
+### 8
+Função e endpoint criados no index.ts e no arquivo getUser, na pasta ENDPOINTS.
 
 
 
