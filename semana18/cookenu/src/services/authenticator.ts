@@ -14,11 +14,11 @@ export function generateToken(payload: authenticationData): string {
 
 export function getTokenData(token: string): authenticationData | null {
     try {
-        const { id } = jwt.verify(
+        const { id, role } = jwt.verify(
             token,
             process.env.JWT_KEY as string
         ) as authenticationData
-        return { id }
+        return { id, role }
     } catch (error) {
         return null
     }
