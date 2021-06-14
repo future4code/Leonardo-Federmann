@@ -6,5 +6,5 @@ export function createHash(plaintext:string):string{
 }
 
 export function compareHash(plaintext:string, hash:string):boolean{
-    return compareHash(plaintext, hash)
+    return compareSync(plaintext, hash)
 }
