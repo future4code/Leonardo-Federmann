@@ -7,7 +7,7 @@ import { generateHash } from '../services/hashManager'
 export async function signup(req: Request, res: Response): Promise<void> {
     try {
         const { name, email, password } = req.body
-        let role: string = req.body.role.toUpperCase()
+        let role: string = req.body.role
 
         if (!name) {
             res.statusCode = 400
@@ -36,13 +36,15 @@ export async function signup(req: Request, res: Response): Promise<void> {
 
         if (!role) {
             role = 'BEGINNER'
+        }else{
+            role = role.toUpperCase()
         }
 
         if (role !== 'BEGINNER' && role !== 'INTERMEDIATE' && role !== 'CHEF') {
             res.statusCode = 400
             throw new Error('If you wish to insert a role, please insert a valid one (BEGINNER, INTERMEDIATE or CHEF).')
         }
-        
+
         const allExistingEmails = await connection.select('email').from('cookenu_users')
         allExistingEmails.forEach((existingEmail) => {
             if (existingEmail.email === email) {

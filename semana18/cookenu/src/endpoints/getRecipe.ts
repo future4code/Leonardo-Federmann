@@ -32,7 +32,7 @@ export async function getRecipe(req: Request, res: Response): Promise<void> {
             name,
             creator: creator[0].name,
             description,
-            createdAt: creation_date,
+            createdAt: new Date(creation_date).toISOString().split('T')[0],
         })
 
     } catch (error) {
