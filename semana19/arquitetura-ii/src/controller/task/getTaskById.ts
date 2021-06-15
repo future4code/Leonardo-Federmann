@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getTaskByIdBusiness } from "../../business/task/getTaskByIdBusiness";
 import {selectTaskById} from "../../data/task/selectTaskById";
+import { task } from "../../model/task";
 
 export const getTaskById = async (
    req: Request,
