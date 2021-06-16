@@ -1,5 +1,3 @@
-import { StringMappingType } from "typescript"
-
 export type authenticationData = {
     id: string,
     role: string

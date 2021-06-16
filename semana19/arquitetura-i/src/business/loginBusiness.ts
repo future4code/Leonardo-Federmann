@@ -27,8 +27,5 @@ export async function loginBusiness (
 
     const token:string = generateToken({id: user.id, role:user.role})
 
-    console.log(user)
-    console.log(token)
-
     return token
 }
