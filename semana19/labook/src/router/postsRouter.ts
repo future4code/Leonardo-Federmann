@@ -10,5 +10,5 @@ import {createPost} from '../controller/posts/createPost'
 
 export const postsRouter = Router()
 
-postsRouter.post('/posts/create', createPost)
-postsRouter.get('/posts/:id', getPost) 
+postsRouter.post('/create', createPost)
+postsRouter.get('/:id', getPost) 

@@ -3,11 +3,17 @@ export enum POST_TYPES {
     EVENT = "event"
  }
  
-export type post = {
+export interface post {
     id: string,
     photo: string,
     description: string,
     type: POST_TYPES,
-    createdAt: Date,
+    createdAt: string,
     authorId: string
  }
+
+ export interface postDTO {
+     post: post,
+     message: string
+ }
+

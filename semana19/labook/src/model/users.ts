@@ -4,3 +4,8 @@ export type user = {
     email: string,
     password: string
  }
+
+ export type loginAndSignupDTO = {
+     message:string,
+     token:string
+ }
