@@ -11,7 +11,7 @@ export class UserBusiness {
       private idGenerator: IdGenerator,
       private hashGenerator: HashGenerator,
       private userDatabase: UserDatabase,
-      private tokenGenerator: TokenGenerator
+      private tokenGenerator: TokenGenerator,
    ) {}
 
    public async signup(
@@ -85,6 +85,24 @@ export class UserBusiness {
 
          return { accessToken };
       } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
+
+   public async getUserBusiness (id:string){
+      try{
+         if(!id){
+            throw new CustomError(401, 'Please insert an id')
+         }
+
+         const user = await this.userDatabase.getUserById(id)
+
+         if(!user){
+            throw new CustomError(401, "Invalid id")
+         }
+
+         return user
+      }catch(error){
          throw new CustomError(error.statusCode, error.message)
       }
    }

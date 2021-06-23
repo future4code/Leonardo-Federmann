@@ -5,6 +5,7 @@ import hashGeneratorMock from "./mocks/hashGeneratorMock"
 import idGeneratorMock from "./mocks/idGeneratorMock"
 import tokenGeneratorMock from "./mocks/tokenGeneratorMock"
 import userDatabaseMock from "./mocks/UserDatabaseMock"
+import { userMockAdmin } from "./mocks/UserMock"
 
 const userBusinessMock = new UserBusiness(
   idGeneratorMock,
@@ -146,6 +147,27 @@ describe("UserBusiness", () => {
         
       } catch (error) {
         console.log(error.message)
+      }
+    })
+  })
+
+  describe("testing get user by id endpoint", ()=>{
+    test("Should return a message of unexisting user", async()=>{
+      expect.assertions(2)
+      try{
+        const result = await userBusinessMock.getUserBusiness('aaa')
+      }catch(error){
+        expect(error.statusCode).toBe(401)
+        expect(error.message).toBe("Invalid id")
+      }
+    })
+
+    test("Should return the searched user normally", async()=>{
+      try{
+        const result = userBusinessMock.getUserBusiness('id_mock_admin')
+        expect(result).toEqual(userMockAdmin)
+      }catch(error){
+        console.log(error)
       }
     })
   })

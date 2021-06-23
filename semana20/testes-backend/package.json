@@ -4,7 +4,7 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "test": "clear && echo \"Running tests...\" && jest",
+      "test": "echo \"Running tests...\" && jest",
       "start": "tsc && node --inspect ./build/src/index.js",
       "dev": " ts-node-dev ./src/index.ts"
    },
